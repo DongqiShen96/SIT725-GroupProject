@@ -1,79 +1,75 @@
 /*--Sign in page --*/
-body {
-    font-family: Arial, sans-serif;
-    background-color: #00f3a670;
-    margin: 0;
-    padding: 0;
+.login-body {
+  font-family: Arial, sans-serif;
+  background-color: #00f3a670;
+  margin: 0;
+  padding: 0;
 }
 
 .log_container {
-    width: 100%;
-    max-width: 400px;
-    margin: 150px auto;
-    background-color: #fbf4f4;
-    border-radius: 30px;
-    padding: 30px 30px 30px 30px;
-    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+  margin: 150px auto;
+  background-color: #fbf4f4;
+  border-radius: 30px;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.title {
-    font-size: 32px;
-    text-align: center;
-    margin-top: 20px;
+.login-title {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 label {
-    display: block;
-    margin: 15px 0 0 0;
+  display: block;
+  margin: 15px 0 0 0;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    background-color: #00752f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00752f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #004a1e;
+  background-color: #004a1e;
 }
 
 .login_signup_nav {
-    margin: 15px 0 0 0;
-    font-size: small;
+  margin: 15px 0 0 0;
+  font-size: small;
 }
-
-
 
 /*--health track page --*/
 
 .navbar-size {
-    width: 80%;
-    margin: 0 auto;
+  width: 80%;
+  margin: 0 auto;
 }
 
-
 .user-image-size {
-    height: 56px;
-    margin: 4px 0;
+  height: 56px;
+  margin: 4px 0;
 }
 
 .main-body {
-    color: rgb(207, 138, 47);
-    height: 100%;
+  color: rgb(207, 138, 47);
+  height: 100%;
 }
 
 .materialboxed-image {
-    margin:  auto;
-    height: 800px;
-    
+  margin: auto;
+  height: 800px;
 }
 
 .btn {
-    background-color: burlywood;
+  background-color: burlywood;
 }
 
 table {
@@ -81,18 +77,81 @@ table {
   width: 100%;
   margin-bottom: 1rem;
 }
-  
-th, td {
+
+th,
+td {
   text-align: left;
   padding: 0.5rem;
 }
-  
+
 th {
   background-color: #eee;
   font-weight: bold;
   border-bottom: 1px solid #ddd;
 }
-  
+
 tr:hover {
   background-color: #f5f5f5;
+}
+
+/* About us page */
+.about-us-body {
+  font-family: Arial, sans-serif;
+  background-color: #f5deb3;
+  margin: 0;
+}
+
+.about-us-container {
+  margin: 60px auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: white;
+  width: 80%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-section-text {
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-us {
+  font-size: 15px;
+}
+
+.about-us-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffa500;
+  padding: 10px;
+  color: white;
+  font-size: 18px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.about-us-our-team,
+.contact-us {
+  text-align: center;
+}
+
+.about-us-our-team ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-us-our-team li {
+  font-size: 14px;
 }
