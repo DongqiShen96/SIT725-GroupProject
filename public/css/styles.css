@@ -1,0 +1,49 @@
+/*--health track page --*/
+
+.navbar-size {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+.user-image-size {
+    height: 56px;
+    margin: 4px 0;
+}
+
+.main-body {
+    color: rgb(207, 138, 47);
+    height: 100%;
+}
+
+.materialboxed-image {
+    margin:  auto;
+    height: 800px;
+    
+}
+
+.btn {
+    background-color: burlywood;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+  
+th, td {
+  text-align: left;
+  padding: 0.5rem;
+}
+  
+th {
+  background-color: #eee;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+  
+tr:hover {
+  background-color: #f5f5f5;
+}
+  
