@@ -182,7 +182,7 @@ tr:hover {
 }
 
 .logo img:hover {
-  transform: scale(0.9); 
+  transform: scale(0.9);
 }
 
 .header-title {
@@ -193,7 +193,7 @@ tr:hover {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #ffffff;
   letter-spacing: 1px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .about-us {
@@ -203,16 +203,16 @@ tr:hover {
 
 body {
   margin: 0;
-  font-family: 'Roboto', Arial, sans-serif;
-  background-color: #f1f1f1; 
+  font-family: "Roboto", Arial, sans-serif;
+  background-color: #f1f1f1;
 }
 
 .nav {
   height: 100%;
-  width: 80px; 
+  width: 80px;
   position: fixed;
-  top: 110px; 
-  left:10px;
+  top: 110px;
+  left: 10px;
   background-color: #f5cd81;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
@@ -234,17 +234,16 @@ body {
 }
 
 .nav img:hover {
-  transform: scale(1.1); 
+  transform: scale(1.1);
 }
 
 .about-us {
   font-size: 15px;
 }
 
-
 .main-content {
   margin-left: 220px;
-  padding: 20px; 
+  padding: 20px;
 }
 
 form label {
@@ -272,7 +271,7 @@ form button {
 }
 
 .event-container {
-  width: 1000px; 
+  width: 1000px;
   height: 150px;
   display: flex;
   justify-content: space-between;
@@ -323,4 +322,65 @@ form button {
 .main-delete-event-delete-event:hover {
   background-color: #d22020;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* User infomation */
+.user-info-body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f5deb3;
+}
+
+.user-info-h1 {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.user-info-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.user-info-form {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 10px;
+  width: 450px;
+}
+
+.user-info-image {
+  padding: 10px;
+  width: 30%;
+}
+
+.user-info-img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.user-info-label,
+input,
+select {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.user-info-submit-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 10px;
 }
