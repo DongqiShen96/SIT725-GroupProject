@@ -6,7 +6,7 @@ body {
     padding: 0;
 }
 
-.login_container {
+.log_container {
     width: 100%;
     max-width: 400px;
     margin: 150px auto;
@@ -41,7 +41,7 @@ button:hover {
     background-color: #004a1e;
 }
 
-.sign_in_nav {
+.login_signup_nav {
     margin: 15px 0 0 0;
     font-size: small;
 }
