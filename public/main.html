@@ -10,6 +10,7 @@
 </head>
 
 <body class="body">
+
     <div class="header">
         <div class="logo"><img src="images/logo.png" alt="Logo"></div>
         <div class="header-title">Pet Management</div>
@@ -19,7 +20,9 @@
     </div>
 
     <div class="main-content">
-
+        <h1>
+            Daily activity management
+        </h1>
         <label for="month-dropdown">Month</label>
         <select id="month-dropdown">
             <option value="1">January</option>
@@ -46,8 +49,6 @@
 
         <div class="event-checklist">Event Checklist</div>
         <button class="main-add-event" id="add-event">Add Event</button>
-        <div class="main-container">
-        </div>
 
         <!-- model -->
         <form id="event-form">
@@ -63,6 +64,13 @@
             <input type="submit" value="Submit">
             <button type="button" id="close-button">Close</button>
         </form>
+
+        <div class="main-container">
+            <div id="event-list">
+            </div>
+        </div>
+
 </body>
 <script src="js/scripts.js"></script>
+
 </html>

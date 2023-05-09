@@ -5,7 +5,9 @@ body {
   font-family: 'Roboto', Arial, sans-serif;
   background-color: #f9dba3;
 }
-
+.title {
+  text-align: center;
+}
 .header {
   display: flex;
   align-items: center;
