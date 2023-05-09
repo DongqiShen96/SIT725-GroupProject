@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,43 +19,50 @@
     </div>
 
     <div class="main-content">
-        <form>
-            <label for="month-dropdown">Month</label>
-            <select id="month-dropdown">
-                <option value="1">January</option>
-                <option value="2">February</option>
-                <option value="3">March</option>
-                <option value="4">April</option>
-                <option value="5">May</option>
-                <option value="6">June</option>
-                <option value="7">July</option>
-                <option value="8">August</option>
-                <option value="9">September</option>
-                <option value="10">October</option>
-                <option value="11">November</option>
-                <option value="12">December</option>
-            </select>
 
-            <label for="day-dropdown">Day</label>
-            <select id="day-dropdown">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <button type="submit">Search</button>
-        </form>
+        <label for="month-dropdown">Month</label>
+        <select id="month-dropdown">
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+        </select>
+
+        <label for="day-dropdown">Day</label>
+        <select id="day-dropdown">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+        </select>
+        <button type="submit">Search</button>
+
         <div class="event-checklist">Event Checklist</div>
+        <button class="main-add-event" id="add-event">Add Event</button>
         <div class="main-container">
-            <div class="event-container">
-                <div class="event">
-                    <h3>9:00 AM</h3>
-                    <h2>Meeting</h2>
-                    <p>Discuss project progress and next steps.</p>
-                </div>
-                <button class="main-delete-event">Delete</button>
-            </div>
-            <button class="main-add-event" id="add-event">Add</button>
         </div>
-</body>
 
+        <!-- model -->
+        <form id="event-form">
+            <label for="time">Time:</label>
+            <input type="time" id="time" name="time"><br><br>
+
+            <label for="event">Event:</label>
+            <input type="text" id="event" name="event"><br><br>
+
+            <label for="detail">Detail:</label>
+            <textarea id="detail" name="detail" rows="4" cols="50"></textarea><br><br>
+
+            <input type="submit" value="Submit">
+            <button type="button" id="close-button">Close</button>
+        </form>
+</body>
+<script src="js/scripts.js"></script>
 </html>
