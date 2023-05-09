@@ -4,198 +4,120 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pet health track</title>
   <meta name="author" content="Tim Z">
 
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-  <link rel="stylesheet" href="CSS/styles.css">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
-  <nav style="background-color: burlywood;">
-    <div class="nav-wrapper navbar-size">
-      <a href="#" class="logo"><img class="user-image-size" src="Images/logo.jpg" /></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a target="_blank" href="#">About us</a></li>
-      </ul>
+  <div class="header">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo">
     </div>
-  </nav>
+    <div class="header-title">
+      Pet Health Track
+    </div>
+    <div class="about-us">
+      About Us
+    </div>
+  </div>
+
+  <div class="nav">
+    <img src="image1.jpg" alt="Navigation Image 1">
+    <img src="image2.jpg" alt="Navigation Image 2">
+  </div>
+
   <main class="main-body">
-    <div class="container">
-      <div class="row">
-        <div class="col s12 ">
-          <h1 id="heading" class="center-align">Pet Health Track</h1>
-          <h2>
-            Calculate your pet's healthy status
-          </h2>
-          <p><i>Note: Health calculations for adult pets are supported only</i></p>
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s6">
-                <input id="name" type="text" class="validate">
-                <label for="name">Name</label>
-              </div>
-              <div class="input-field col s6">
-                <input id="breed" type="text" class="validate">
-                <label for="breed">Breed</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="weight" type="text" class="validate">
-                <label for="weight">Weight</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="height" type="text" class="validate">
-                <label for="height">Height</label>
-              </div>
-            </div>
-            <div class="row">
-              <div class="input-field col s12 center-align">
-                <a class="waves-effect waves-light btn modal-trigger" id="formSubmit" data-target="modal1">Calculate</a>
-              </div>
-            </div>
-          </form>
-          <h2 class="col s12">
-            History
-          </h2>
-          <form>
-            <div class="form-group">
-              <div class="col s7">
-                <select class="form-control" id="period" name="period">
-                  <option value="week">One week</option>
-                  <option value="month">One month</option>
-                  <option value="three-month">Three months</option>
-                  <option value="all">All History</option>
-                </select>
-              </div>
-              <div class="col s3">
-                <a class="btn" id="requireHistory">Search</a>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="col s12">
-        <table class="striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Breed</th>
-              <th>Weight</th>
-              <th>Height</th>
-              <th>Health Status</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody id="table-body">
+    <h1>
+      Calculate your pet's healthy status
+    </h1>
+    <p><i>Note: Health calculations for adult pets are supported only</i></p>
+    <form>
+      <p>Name</p>
+      <input id="name" type="text">
+      <p>Breed</p>
+      <select name="breed" id="breed">
+        <optgroup label="Dog">
+          <option value="GoldenRetriever">Golden Retriever</option>
+          <option value="GermanShepherd">German Shepherd</option>
+          <option value="FrenchBulldog">French Bulldog</option>
+          <option value="LabradorRetriever">Labrador Retriever</option>
+          <option value="Poodle">Poodle</option>
+        </optgroup>
+        <optgroup label="Cat">
+          <option value="British Shorthair">British Shorthair</option>
+          <option value="Persian">Persian</option>
+          <option value="Sphynx">Sphynx</option>
+          <option value="Bengal">Bengal</option>
+          <option value="Maine Coon">Maine Coon</option>
+        </optgroup>
+      </select>
+      <p>Weight</p>
+      <input id="weight" type="number">
+      <p>Height</p>
+      <input id="height" type="number"><br>
+      <button class="btn" id="formSubmit">Calculate</button>
+    </form>
+    
+    <h1>History</h1>
+    <form>
+      <select id="period" name="period">
+        <option value="week">One week</option>
+        <option value="month">One month</option>
+        <option value="three-month">Three months</option>
+        <option value="all">All History</option>
+      </select>
+      <button class="btn" id="requireHistory">Search</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Breed</th>
+          <th>Weight</th>
+          <th>Height</th>
+          <th>Health Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
 
-          </tbody>
-        </table>
-
-      </div>
-
-
-      <h2>
-        Other helpful information
-      </h2>
-      <p class="flow-text">
-        <a href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weightmgmt_bodyconditionscoring.pdf">
-          Body Condition Scoring (BCS)</a> is an easy-to-use quantitative tool to determine an animal's body
-        condition and fat accumulation. The preferred BCS scale ranges from 1 (emaciated or very thin - 20% under
-        ideal
-        weight) to 9 (obese - 30% over ideal weight) with an ideal body score of 5.<br><br>
-
-        The Association for Pet Obesity Prevention (APOP) recommends using a body condition scale that ranges from
-        one to nine (1-9, whole integer) for dogs and cats. This allows your veterinarian to detect more subtle
-        changes in a pet's body condition over time. Veterinarians routinely calculate and chart your dog and cat's
-        body condition during a visit, so make sure to ask your veterinary healthcare team to evaluate your pet's
-        body condition and teach you how to evaluate your pet for future changes.<br><br>
-
-        Research shows that people often under and overestimate their pet's body condition, even when using a BCS
-        chart. This misperception is similar to findings in the human pediatric community with children who are
-        overweight.<br><br>
-
-        Changes in a pet's weight and changes in adipose tissue can be caused by many factors: genetics, diet and
-        nutrition, feeding habits, physical activity, age, medication, as well as an underlying disease process. It
-        is important to know to monitor your pet for changes for subtle changes over time to ensure they live a
-        happy, healthy, and active life.<br><br>
-      </p>
-    </div>
-    <div class="col s12 center-align">
-      <img class="materialboxed materialboxed-image" src="Images/Dog.png"><br>
-      <img class="materialboxed materialboxed-image" src="Images/Cat.png">
-    </div>
+      </tbody>
+    </table>
 
     </div>
 
-    </div>
+    <h2>
+      Other helpful information
+    </h2>
+    <p>
+      <a href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weightmgmt_bodyconditionscoring.pdf">
+        Body Condition Scoring (BCS)</a> is an easy-to-use quantitative tool to determine an animal's body
+      condition and fat accumulation. The preferred BCS scale ranges from 1 (emaciated or very thin - 20% under
+      ideal
+      weight) to 9 (obese - 30% over ideal weight) with an ideal body score of 5.<br><br>
 
-    <!-- Modal Structure -->
-    <div id="modal1" class="modal fade">
-      <div class="row modal-content">
-        <div class="modal-body" id="status">
-          <h2 id="textualHealthStatus">Your pet is  healthy!</h2>
-          <h2 id="textualHealthStatus">Your pet's weight is well-balanced!</h2>
-          <h2 id="textualHealthStatus">Your pet's height is well-balanced!</h2>
-        <!-- This section is for visualize the result. -->
-        <canvas id="visualizedHealthStatus"></canvas>
-        <script>
-          var ctx = document.getElementById('visualizedHealthStatus').getContext('2d');
-          var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: ["Standard Weight (kg)", "Your Pet's Weight ()", "Standard Height (kg)", "Your Pet's Height (kg)"],
-              datasets: [{
-                label: 'Sales',
-                data: [12, 19, 3, 5],
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)'
-                ],
-                borderWidth: 1
-              }]
-            },
-            options: {
-              scales: {
-                yAxes: [{
-                  ticks: {
-                    beginAtZero: true
-                  }
-                }]
-              }
-            }
-          });
-        </script>
-        </div>
-        
+      The Association for Pet Obesity Prevention (APOP) recommends using a body condition scale that ranges from
+      one to nine (1-9, whole integer) for dogs and cats. This allows your veterinarian to detect more subtle
+      changes in a pet's body condition over time. Veterinarians routinely calculate and chart your dog and cat's
+      body condition during a visit, so make sure to ask your veterinary healthcare team to evaluate your pet's
+      body condition and teach you how to evaluate your pet for future changes.<br><br>
 
-      </div>
+      Research shows that people often under and overestimate their pet's body condition, even when using a BCS
+      chart. This misperception is similar to findings in the human pediatric community with children who are
+      overweight.<br><br>
+
+      Changes in a pet's weight and changes in adipose tissue can be caused by many factors: genetics, diet and
+      nutrition, feeding habits, physical activity, age, medication, as well as an underlying disease process. It
+      is important to know to monitor your pet for changes for subtle changes over time to ensure they live a
+      happy, healthy, and active life.<br><br>
+    </p>
     </div>
+    <img class="materialboxed materialboxed-image" src="Images/Dog.png"><br>
+    <img class="materialboxed materialboxed-image" src="Images/Cat.png">
   </main>
 
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="JS/health-track-script.js"></script>
 </body>
 

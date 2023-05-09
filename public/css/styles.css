@@ -48,28 +48,18 @@ button:hover {
 
 /*--health track page --*/
 
-.navbar-size {
-  width: 80%;
-  margin: 0 auto;
-}
-
-.user-image-size {
-  height: 56px;
-  margin: 4px 0;
-}
 
 .main-body {
   color: rgb(207, 138, 47);
   height: 100%;
-}
-
-.materialboxed-image {
-  margin: auto;
-  height: 800px;
+  width: 80%;
+  margin-left: 200px;
+  padding: 20px;
 }
 
 .btn {
-  background-color: burlywood;
+  margin: 20px;
+  color: rgb(207, 138, 47);
 }
 
 table {
@@ -78,10 +68,10 @@ table {
   margin-bottom: 1rem;
 }
 
-th,
-td {
+th, td {
   text-align: left;
   padding: 0.5rem;
+  border: 1px solid;
 }
 
 th {
