@@ -10,23 +10,13 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
+<body class="body">
   <div class="header">
-    <div class="logo">
-      <img src="images/logo.png" alt="Logo">
-    </div>
-    <div class="header-title">
-      Pet Health Track
-    </div>
-    <div class="about-us">
-      About Us
-    </div>
+    <div class="logo"><img src="images/logo.png" alt="Logo"></div>
+    <div class="header-title">Pet Management</div>
+    <div class="about-us">About Us</div>
   </div>
-
-  <div class="nav">
-    <img src="image1.jpg" alt="Navigation Image 1">
-    <img src="image2.jpg" alt="Navigation Image 2">
-  </div>
+  <div class="nav"><img src="image1.jpg" alt="Navigation Image 1"><img src="image2.jpg" alt="Navigation Image 2"></div>
 
   <main class="main-body">
     <h1>
@@ -57,9 +47,9 @@
       <input id="weight" type="number">
       <p>Height</p>
       <input id="height" type="number"><br>
-      <button class="btn" id="formSubmit">Calculate</button>
+      <button class="calculate_btn" id="formSubmit">Calculate</button>
     </form>
-    
+
     <h1>History</h1>
     <form>
       <select id="period" name="period">
@@ -68,7 +58,7 @@
         <option value="three-month">Three months</option>
         <option value="all">All History</option>
       </select>
-      <button class="btn" id="requireHistory">Search</button>
+      <button class="search_btn" id="requireHistory">Search</button>
     </form>
     <table>
       <thead>

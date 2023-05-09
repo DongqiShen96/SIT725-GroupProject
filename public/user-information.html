@@ -1,109 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>User Information</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body class="user-info-body">
-    <div class="header">
-      <div class="logo">
-        <img src="images/logo.png" alt="Logo" />
-      </div>
-      <div class="header-title">Pet Management</div>
-      <div class="about-us">About Us</div>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Information</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+
+<body class="body">
+  <div class="header">
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo" />
     </div>
-    <h1 class="user-info-h1">User Information</h1>
+    <div class="header-title">Pet Management</div>
+    <div class="about-us">About Us</div>
+  </div>
+  <h1 class="user-info-h1">User Information</h1>
 
-    <!-- Personal information -->
-    <div class="user-info-section personal-info">
-      <div class="user-info-form">
-        <form>
-          <h2>Personal Information</h2>
-          <!-- <div class="grid-container"> -->
-          <label for="first-name">Your Name:</label>
-          <input type="text" id="first-name" name="first-name" required />
-          <br />
-          <label for="birthday">Birthday:</label>
-          <input type="date" id="birthday" name="birthday" required />
-          <br />
-          <label for="gender">Gender:</label>
-          <select id="gender" name="gender" required>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-          <br />
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" required />
-          <br />
-          <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" required />
-          <br />
-          <label for="photo">Photo:</label>
-          <input type="file" id="photo" name="photo" accept="image/*" />
-          <!-- </div> -->
-        </form>
-      </div>
-      <div class="user-info-image">
-        <img
-          class="user-info-img"
-          id="photo-preview"
-          src="Logo.jpg"
-          alt="photo Preview" />
-      </div>
+  <!-- Personal information -->
+  <div class="user-info-section personal-info">
+    <div class="user-info-form">
+      <form>
+        <h2>Personal Information</h2>
+        <!-- <div class="grid-container"> -->
+        <label for="first-name">Your Name:</label>
+        <input type="text" id="first-name" name="first-name" required />
+        <br />
+        <label for="birthday">Birthday:</label>
+        <input type="date" id="birthday" name="birthday" required />
+        <br />
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+        <br />
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        <br />
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+        <br />
+        <label for="photo">Photo:</label>
+        <input type="file" id="photo" name="photo" accept="image/*" />
+        <!-- </div> -->
+      </form>
     </div>
-
-    <!-- save -->
-    <button class="user-info-submit-btn">Submit/Save</button>
-
-    <!-- Pet information -->
-    <div class="user-info-section pet-info">
-      <div class="user-info-form">
-        <form>
-          <h2>Pet Information</h2>
-          <label class="user-info-label" for="pet-name">Pet Name:</label>
-          <input type="text" id="pet-name" name="pet-name" required />
-          <br />
-          <label class="user-info-label" for="pet-type">Pet Type:</label>
-          <select id="pet-type" name="pet-type" required>
-            <option value="">Select Pet Type</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-          </select>
-          <br />
-          <label class="user-info-label" for="pet-breed">Pet Breed:</label>
-          <select id="pet-breed" name="pet-breed" required>
-            <option value="">Select Pet Breed</option>
-            <option value="dog">Dog</option>
-            <option value="cat">Cat</option>
-          </select>
-          <br />
-          <label class="user-info-label" for="pet-age">Age:</label>
-          <input type="number" id="pet-age" name="pet-age" required />
-          <br />
-          <label class="user-info-label" for="pet-gender">Gender:</label>
-          <select id="pet-gender" name="pet-gender" required>
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <br />
-          <label class="user-info-label" for="pet-weight">Weight:</label>
-          <input type="number" id="pet-weight" name="pet-weight" required />
-          <br />
-          <label class="user-info-label" for="pet-photo">Pet Photo:</label>
-          <input type="file" id="pet-photo" name="pet-photo" accept="image/*" />
-        </form>
-      </div>
-      <div class="user-info-image">
-        <img id="pet-photo-preview" src="Logo.jpg" alt="Pet Photo Preview" />
-      </div>
+    <div class="user-info-image">
+      <img class="user-info-img" id="photo-preview" src="Logo.jpg" alt="photo Preview" />
     </div>
+  </div>
 
-    <!-- save -->
-    <button class="user-info-submit-btn">Submit/Save</button>
-  </body>
+  <!-- save -->
+  <button class="user-info-submit-btn">Submit/Save</button>
+
+  <!-- Pet information -->
+  <div class="user-info-section pet-info">
+    <div class="user-info-form">
+      <form>
+        <h2>Pet Information</h2>
+        <label class="user-info-label" for="pet-name">Pet Name:</label>
+        <input type="text" id="pet-name" name="pet-name" required />
+        <br />
+        <label class="user-info-label" for="pet-type">Pet Type:</label>
+        <select id="pet-type" name="pet-type" required>
+          <option value="">Select Pet Type</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+        </select>
+        <br />
+        <label class="user-info-label" for="pet-breed">Pet Breed:</label>
+        <select id="pet-breed" name="pet-breed" required>
+          <option value="">Select Pet Breed</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+        </select>
+        <br />
+        <label class="user-info-label" for="pet-age">Age:</label>
+        <input type="number" id="pet-age" name="pet-age" required />
+        <br />
+        <label class="user-info-label" for="pet-gender">Gender:</label>
+        <select id="pet-gender" name="pet-gender" required>
+          <option value="">Select Gender</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <br />
+        <label class="user-info-label" for="pet-weight">Weight:</label>
+        <input type="number" id="pet-weight" name="pet-weight" required />
+        <br />
+        <label class="user-info-label" for="pet-photo">Pet Photo:</label>
+        <input type="file" id="pet-photo" name="pet-photo" accept="image/*" />
+      </form>
+    </div>
+    <div class="user-info-image">
+      <img id="pet-photo-preview" src="Logo.jpg" alt="Pet Photo Preview" />
+    </div>
+  </div>
+
+  <!-- save -->
+  <button class="user-info-submit-btn">Submit/Save</button>
+</body>
+
 </html>
