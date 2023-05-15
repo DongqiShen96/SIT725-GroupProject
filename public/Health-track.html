@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pet health track</title>
+  <meta name="author" content="Tim Z">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body class="body">
+  <div class="header">
+    <div class="logo"><img src="images/logo.png" alt="Logo"></div>
+    <div class="header-title">Pet Management</div>
+    <div class="about-us">About Us</div>
+  </div>
+  <div class="nav"><img src="image1.jpg" alt="Navigation Image 1"><img src="image2.jpg" alt="Navigation Image 2"></div>
+
+  <main class="main-body">
+    <h1>
+      Calculate your pet's healthy status
+    </h1>
+    <p><i>Note: Health calculations for adult pets only</i></p>
+    <form>
+      <p>Name</p>
+      <input id="name" type="text">
+      <p>Breed</p>
+      <select name="breed" id="breed">
+        <optgroup label="Dog">
+          <option value="GoldenRetriever">Golden Retriever</option>
+          <option value="GermanShepherd">German Shepherd</option>
+          <option value="FrenchBulldog">French Bulldog</option>
+          <option value="LabradorRetriever">Labrador Retriever</option>
+          <option value="Poodle">Poodle</option>
+        </optgroup>
+        <optgroup label="Cat">
+          <option value="British Shorthair">British Shorthair</option>
+          <option value="Persian">Persian</option>
+          <option value="Sphynx">Sphynx</option>
+          <option value="Bengal">Bengal</option>
+          <option value="Maine Coon">Maine Coon</option>
+        </optgroup>
+      </select>
+      <p>Weight</p>
+      <input id="weight" type="number">
+      <p>Height</p>
+      <input id="height" type="number"><br>
+      <button class="calculate_btn" id="formSubmit">Calculate</button>
+    </form>
+
+    <h1>History</h1>
+    <form>
+      <select id="period" name="period">
+        <option value="week">One week</option>
+        <option value="month">One month</option>
+        <option value="three-month">Three months</option>
+        <option value="all">All History</option>
+      </select>
+      <button class="search_btn" id="requireHistory">Search</button>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Breed</th>
+          <th>Weight</th>
+          <th>Height</th>
+          <th>Health Status</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="table-body">
+
+      </tbody>
+    </table>
+
+    </div>
+
+    <h2>
+      Other helpful information
+    </h2>
+    <p>
+      <a href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weightmgmt_bodyconditionscoring.pdf">
+        Body Condition Scoring (BCS)</a> is an easy-to-use quantitative tool to determine an animal's body
+      condition and fat accumulation. The preferred BCS scale ranges from 1 (emaciated or very thin - 20% under
+      ideal
+      weight) to 9 (obese - 30% over ideal weight) with an ideal body score of 5.<br><br>
+
+      The Association for Pet Obesity Prevention (APOP) recommends using a body condition scale that ranges from
+      one to nine (1-9, whole integer) for dogs and cats. This allows your veterinarian to detect more subtle
+      changes in a pet's body condition over time. Veterinarians routinely calculate and chart your dog and cat's
+      body condition during a visit, so make sure to ask your veterinary healthcare team to evaluate your pet's
+      body condition and teach you how to evaluate your pet for future changes.<br><br>
+
+      Research shows that people often under and overestimate their pet's body condition, even when using a BCS
+      chart. This misperception is similar to findings in the human pediatric community with children who are
+      overweight.<br><br>
+
+      Changes in a pet's weight and changes in adipose tissue can be caused by many factors: genetics, diet and
+      nutrition, feeding habits, physical activity, age, medication, as well as an underlying disease process. It
+      is important to know to monitor your pet for changes for subtle changes over time to ensure they live a
+      happy, healthy, and active life.<br><br>
+    </p>
+    </div>
+    <img class="materialboxed materialboxed-image" src="Images/Dog.png"><br>
+    <img class="materialboxed materialboxed-image" src="Images/Cat.png">
+  </main>
+
+  <script src="JS/health-track-script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,373 @@
+/* Global styles */
+body {
+  margin: 0;
+  padding-top: 100px;
+  font-family: 'Roboto', Arial, sans-serif;
+  background-color: #f9dba3;
+}
+.title {
+  text-align: center;
+}
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #e79c11;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  height: 60px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
+  z-index: 1000; 
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 100px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logo img:hover {
+  transform: scale(0.9);
+}
+
+.header-title {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 45px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+  letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.about-us {
+  font-size: 18px;
+  padding-right: 35px;
+  flex-shrink: 0;
+}
+
+.nav {
+  height: 100%;
+  width: 80px;
+  position: fixed;
+  top: 110px;
+  left: 10px;
+  background-color: #e79c11;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1;
+}
+
+.nav img {
+  width: calc(100% - 40px);
+  height: auto;
+  max-height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.nav img:hover {
+  transform: scale(1.1);
+}
+
+.about-us {
+  font-size: 15px;
+}
+
+/*--Sign in page --*/
+.login-body {
+  font-family: Arial, sans-serif;
+  background-color: #f5cd81;
+  margin: 0;
+  padding: 0;
+}
+
+.log_container {
+  width: 100%;
+  max-width: 400px;
+  margin: 150px auto;
+  background-color: #fbf4f4;
+  border-radius: 30px;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.login-title {
+  font-size: 32px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin: 15px 0 0 0;
+}
+
+.login-button {
+  width: 100%;
+  padding: 10px;
+  background-color: #00752f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #004a1e;
+}
+
+.login_signup_nav {
+  margin: 15px 0 0 0;
+  font-size: small;
+}
+
+/*--health track page --*/
+
+
+.main-body {
+  color: rgb(0, 0, 0);
+  height: 100%;
+  width: 80%;
+  margin-left: 200px;
+  padding-top: 100px;
+}
+
+.calculate_btn {
+  margin: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.calculate_btn:hover {
+  background-color: #218838;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.search_btn{
+  margin: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.search_btn:hover{
+  background-color: #218838;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 0.5rem;
+  border: 1px solid;
+}
+
+th {
+  background-color: #eee;
+  font-weight: bold;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* About us page */
+.about-us-body {
+  font-family: Arial, sans-serif;
+  background-color: #f5cd81;
+  margin: 0;
+}
+
+.about-us-container {
+  margin: 60px auto;
+  margin-top: 100px;
+  padding: 20px;
+  background-color: white;
+  width: 80%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-section-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.about-us-section-text {
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.about-us {
+  font-size: 15px;
+}
+
+.about-us-footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #ffa500;
+  padding: 10px;
+  color: white;
+  font-size: 18px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.about-us-our-team,
+.contact-us {
+  text-align: center;
+}
+
+.about-us-our-team ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-us-our-team li {
+  font-size: 14px;
+}
+
+/*--main page--*/
+.main-content {
+  margin-left: 220px;
+  padding-top: 100px;
+}
+
+form label {
+  padding-top: 40px;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+form input {
+  display: inline-block;
+  margin-right: 15px;
+}
+
+form button {
+  display: inline-block;
+}
+
+.main-event-checklist {
+  padding-top: 40px;
+}
+
+.main-container {
+  padding-top: 30px;
+  font-size: 16px;
+}
+
+.event-container {
+  width: 1000px;
+  height: 150px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d0e11d;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transform: translateY(0);
+}
+
+.event-container:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-20px);
+}
+
+#event-form {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.main-add-event {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.main-add-event:hover {
+  background-color: #218838;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.main-delete-event {
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.main-delete-event:hover {
+  background-color: #d22020;
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
