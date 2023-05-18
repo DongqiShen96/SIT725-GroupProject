@@ -107,11 +107,18 @@
           <input type="number" id="pet-weight" name="pet-weight" required />
           <br />
           <label class="user-info-label" for="pet-photo">Pet Photo:</label>
-          <input type="file" id="pet-photo" name="pet-photo" accept="image/*" />
+          <button type="button" id="pet-upload-button">Upload Image</button>
+          <input
+            type="file"
+            id="pet-photo"
+            name="pet-photo"
+            accept="image/*"
+            style="display: none" />
         </form>
       </div>
       <div class="user-info-image">
         <img
+          class="pet-photo-img"
           id="pet-photo-preview"
           src="./images/preview.jpg"
           alt="Pet Photo Preview" />
