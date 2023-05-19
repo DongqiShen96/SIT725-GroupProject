@@ -3,7 +3,7 @@ const multer = require("multer");
 var app = express();
 const { MongoClient } = require("mongodb");
 const uri =
-  "mongodb+srv://admin:admin@cluster0.ctzja1c.mongodb.net/?retryWrites=true&w=majority";
+  "mongodb+srv://admin:admin@cluster0.cxhciec.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
