@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <title>Pet health track</title>
   <meta name="author" content="Tim Z">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -26,7 +26,7 @@
     </h1>
     <p><i>Note: Health calculations for adult pets only</i></p>
     <form>
-      <p>Name</p>
+      <p>Pet Name</p>
       <input id="name" type="text">
       <p>Breed</p>
       <select name="breed" id="breed">
@@ -38,19 +38,23 @@
           <option value="Poodle">Poodle</option>
         </optgroup>
         <optgroup label="Cat">
-          <option value="British Shorthair">British Shorthair</option>
+          <option value="BritishShorthair">British Shorthair</option>
           <option value="Persian">Persian</option>
           <option value="Sphynx">Sphynx</option>
           <option value="Bengal">Bengal</option>
-          <option value="Maine Coon">Maine Coon</option>
+          <option value="MaineCoon">Maine Coon</option>
         </optgroup>
       </select>
-      <p>Weight</p>
+      <p>Weight (kg)</p>
       <input id="weight" type="number">
-      <p>Height</p>
+      <p>Height (cm)</p>
       <input id="height" type="number"><br>
-      <button class="calculate_btn" id="formSubmit">Calculate</button>
+      <button class="calculate_btn" id="formSubmit" type="button">Calculate</button>
     </form>
+
+    <div id="result">
+      
+    </div>
 
     <h1>History</h1>
     <form>
@@ -78,11 +82,9 @@
       </tbody>
     </table>
 
-    </div>
-
-    <h2>
+    <h1>
       Other helpful information
-    </h2>
+    </h1>
     <p>
       <a href="https://www.aaha.org/globalassets/02-guidelines/weight-management/weightmgmt_bodyconditionscoring.pdf">
         Body Condition Scoring (BCS)</a> is an easy-to-use quantitative tool to determine an animal's body
@@ -110,7 +112,7 @@
     <img class="materialboxed materialboxed-image" src="Images/Cat.png">
   </main>
 
-  <script src="JS/health-track-script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
