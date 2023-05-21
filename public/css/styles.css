@@ -2,7 +2,7 @@
 body {
   margin: 0;
   padding-top: 100px;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
   background-color: #f9dba3;
 }
 .title {
@@ -19,10 +19,10 @@ body {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
-  z-index: 1000; 
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
 .logo {
@@ -48,7 +48,7 @@ body {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   color: #ffffff;
   letter-spacing: 1px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .about-us {
@@ -141,7 +141,6 @@ button:hover {
 
 /*--health track page --*/
 
-
 .main-body {
   color: rgb(0, 0, 0);
   height: 100%;
@@ -170,7 +169,7 @@ button:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
-.search_btn{
+.search_btn {
   margin: 20px;
   background-color: #28a745;
   color: #fff;
@@ -185,7 +184,7 @@ button:hover {
   transition: all 0.3s ease-in-out;
 }
 
-.search_btn:hover{
+.search_btn:hover {
   background-color: #218838;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
@@ -196,7 +195,8 @@ table {
   margin-bottom: 1rem;
 }
 
-th, td {
+th,
+td {
   text-align: left;
   padding: 0.5rem;
   border: 1px solid;
@@ -370,4 +370,42 @@ form button {
 .main-delete-event:hover {
   background-color: #d22020;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* user-info */
+.user-info-submit-btn {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px 2px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.user-info-form {
+  background-color: #eef10a;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+}
+
+.user-info-section {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  margin: 50px;
+}
+.user-info-image {
+  width: 20%;
+  margin: 150px;
+}
+
+.user-info-image img {
+  max-width: 100%;
 }
