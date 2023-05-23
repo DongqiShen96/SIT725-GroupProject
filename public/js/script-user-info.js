@@ -1,14 +1,18 @@
 // User information
 // Add img
 let imgUrl;
+// Get the user information from the server and display the user image on the page
 fetch("/api/userinfo")
   .then((response) => response.json())
   .then((data) => {
-    const userInfo = data.data[0];
-    if (userInfo && userInfo.photo) {
-      document.querySelector("#photo-preview").src = userInfo.photo;
+    if (data && data.data && data.data.length > 0) {
+      const userInfo = data.data[0];
+      if (userInfo && userInfo.photo) {
+        document.querySelector("#photo-preview").src = userInfo.photo;
+      }
     }
   });
+// Listening for click events, triggering the file selection box when the user clicks the upload button
 document.getElementById("upload-button").addEventListener("click", function () {
   document.getElementById("photo").click();
 });
@@ -16,6 +20,7 @@ document.getElementById("photo").addEventListener("change", function (event) {
   const file = event.target.files[0];
   const reader = new FileReader();
   reader.onloadend = function () {
+    // Preview images
     document.getElementById("photo-preview").src = reader.result;
     // send file to server
     const formData = new FormData();
@@ -70,12 +75,15 @@ document
 // pet information
 // Add img
 let petimgUrl;
+
 fetch("/api/petinfo")
   .then((response) => response.json())
   .then((data) => {
-    const petInfo = data.data[0];
-    if (petInfo && petInfo.photo) {
-      document.querySelector("#pet-photo-preview").src = petInfo.photo;
+    if (data && data.data && data.data.length > 0) {
+      const petInfo = data.data[0];
+      if (petInfo && petInfo.photo) {
+        document.querySelector("#pet-photo-preview").src = petInfo.photo;
+      }
     }
   });
 document
@@ -141,7 +149,7 @@ document
         console.error("Error:", error);
       });
   });
-
+// Feedback to users
 function submitClick() {
   alert("Thanks for Submit information!");
 }

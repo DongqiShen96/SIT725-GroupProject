@@ -1,5 +1,5 @@
 const model = require("../model/model");
-
+// Processing user information
 const storeUserInfo = (req, res) => {
   const userInfo = req.body;
   model.insertOneUser(userInfo, (err, result) => {
@@ -14,7 +14,7 @@ const storeUserInfo = (req, res) => {
     }
   });
 };
-
+// Processing user information
 const storePetInfo = (req, res) => {
   const petInfo = req.body;
   model.insertOnePet(petInfo, (err, result) => {
@@ -29,7 +29,7 @@ const storePetInfo = (req, res) => {
     }
   });
 };
-
+// get of user information
 const getUserInfo = (req, res) => {
   model.findUsers((err, result) => {
     if (err) {
@@ -39,7 +39,7 @@ const getUserInfo = (req, res) => {
     }
   });
 };
-
+// get of pet information
 const getPetInfo = (req, res) => {
   model.findPets((err, result) => {
     if (err) {

@@ -7,12 +7,22 @@ const client = new MongoClient(uri, {
 });
 
 let userCollection, petCollection;
+// Connecting to the database
+const connectDB = (callback) => {
+  client.connect((err) => {
+    if (err) {
+      console.error("Failed to connect to the database", err);
+    } else {
+      console.log("dbConnected successfully");
+      const db = client.db("GroupProject");
+      userCollection = db.collection("userInfo");
+      petCollection = db.collection("petInfo");
+      return callback(err);
+    }
+  });
+};
+// Real-time Collection updates
+const getUserCollection = () => userCollection;
+const getPetCollection = () => petCollection;
 
-client.connect((err) => {
-  if (err) throw err;
-  userCollection = client.db("GroupProject").collection("userInfo");
-  petCollection = client.db("GroupProject").collection("petInfo");
-  console.log("Connected to MongoDB!");
-});
-
-module.exports = { userCollection, petCollection };
+module.exports = { connectDB, getUserCollection, getPetCollection };
