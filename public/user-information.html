@@ -15,16 +15,77 @@
       <div class="header-title">Pet Management</div>
       <div class="about-us">About Us</div>
     </div>
-    <h1 class="user-info-h1">User Information</h1>
+    <div id="user-info-section">
+      <h1 class="user-info-h1">User Information</h1>
+      <!-- User Information -->
+      <div class="user-info-section">
+        <div class="user-info">
+          <h2>User Information</h2>
+          <div class="user-info-details">
+            <p id="username">Name:</p>
+            <p id="birthday">Birthday:</p>
+            <p id="gender">Gender:</p>
+            <p id="email">Email:</p>
+            <p id="phone">Phone Number:</p>
+          </div>
+          <button id="user-edit-btn">Edit</button>
+        </div>
+        <div class="user-info-image">
+          <img
+            class="user-info-img"
+            id="photo-preview"
+            src="./images/preview.jpg"
+            alt="photo Preview" />
+          <button id="upload-button">Upload Image</button>
+          <input
+            type="file"
+            id="photo"
+            name="photo"
+            accept="image/*"
+            style="display: none" />
+        </div>
+      </div>
+    </div>
 
-    <!-- Personal information -->
-    <div class="user-info-section personal-info">
-      <div class="user-info-form">
-        <form>
-          <h2>Personal Information</h2>
-          <!-- <div class="grid-container"> -->
-          <label for="first-name">Your Name:</label>
-          <input type="text" id="first-name" name="first-name" required />
+    <!-- Pet Information -->
+    <div class="user-info-section">
+      <div class="user-info">
+        <h2>Pet Information</h2>
+        <div class="user-info-details">
+          <p id="pet-name">Name:</p>
+          <p id="pet-type">Type:</p>
+          <p id="pet-breed">Breed:</p>
+          <p id="pet-age">Age:</p>
+          <p id="pet-gender">Gender:</p>
+          <p id="pet-weight">Weight:</p>
+        </div>
+        <button id="pet-edit-btn">Edit</button>
+      </div>
+      <div class="user-info-image">
+        <img
+          class="pet-photo-img"
+          id="pet-photo-preview"
+          src="./images/preview.jpg"
+          alt="Pet Photo Preview" />
+        <button id="pet-upload-button">Upload Pet Image</button>
+        <input
+          type="file"
+          id="pet-photo"
+          name="pet-photo"
+          accept="image/*"
+          style="display: none" />
+      </div>
+    </div>
+
+    <!-- The User Edit Modal -->
+    <div id="userModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- User information form -->
+        <form id="user-form">
+          <label for="username">Your Name:</label>
+          <input type="text" id="username" name="username" required />
           <br />
           <label for="birthday">Birthday:</label>
           <input type="date" id="birthday" name="birthday" required />
@@ -43,39 +104,24 @@
           <label for="phone">Phone Number:</label>
           <input type="tel" id="phone" name="phone" required />
           <br />
-          <label for="photo">Photo:</label>
-          <button type="button" id="upload-button">Upload Image</button>
-          <input
-            type="file"
-            id="photo"
-            name="photo"
-            accept="image/*"
-            style="display: none" />
-          <!-- </div> -->
+          <!-- save -->
+          <button
+            class="user-info-submit-btn"
+            id="user-submit-btn"
+            onclick="submitClick()">
+            Submit/Save
+          </button>
         </form>
-      </div>
-      <div class="user-info-image">
-        <img
-          class="user-info-img"
-          id="photo-preview"
-          src="./images/preview.jpg"
-          alt="photo Preview" />
       </div>
     </div>
 
-    <!-- save -->
-    <button
-      class="user-info-submit-btn"
-      id="user-submit-btn"
-      onclick="submitClick()">
-      Submit/Save
-    </button>
-
-    <!-- Pet information -->
-    <div class="user-info-section pet-info">
-      <div class="user-info-form">
-        <form>
-          <h2>Pet Information</h2>
+    <!-- The Pet Edit Modal -->
+    <div id="petModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- Pet information form -->
+        <form id="pet-form">
           <label class="user-info-label" for="pet-name">Pet Name:</label>
           <input type="text" id="pet-name" name="pet-name" required />
           <br />
@@ -106,32 +152,16 @@
           <label class="user-info-label" for="pet-weight">Weight:</label>
           <input type="number" id="pet-weight" name="pet-weight" required />
           <br />
-          <label class="user-info-label" for="pet-photo">Pet Photo:</label>
-          <button type="button" id="pet-upload-button">Upload Image</button>
-          <input
-            type="file"
-            id="pet-photo"
-            name="pet-photo"
-            accept="image/*"
-            style="display: none" />
+          <!-- save -->
+          <button
+            class="user-info-submit-btn"
+            id="pet-submit-btn"
+            onclick="submitClick()">
+            Submit/Save
+          </button>
         </form>
       </div>
-      <div class="user-info-image">
-        <img
-          class="pet-photo-img"
-          id="pet-photo-preview"
-          src="./images/preview.jpg"
-          alt="Pet Photo Preview" />
-      </div>
     </div>
-
-    <!-- save -->
-    <button
-      class="user-info-submit-btn"
-      id="pet-submit-btn"
-      onclick="submitClick()">
-      Submit/Save
-    </button>
+    <script src="./js/scripts.js"></script>
   </body>
-  <script src="./js/script-user-info.js"></script>
 </html>
