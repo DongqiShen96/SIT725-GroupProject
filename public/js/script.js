@@ -21,7 +21,7 @@ const submitForm = () => {
   // Print for test
   console.log('form data: ', formData);
   // Server update
-  //createUser(formData)
+  createUser(formData)
 }
 
 const createUser = (user) => {
