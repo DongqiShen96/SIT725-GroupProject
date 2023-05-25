@@ -8,4 +8,12 @@ let petsCollection = client.db('GroupProject').collection('Pets');
 let usersCollection = client.db('GroupProject').collection('Users');
 
 
-module.exports = {}
+const createUser = (user, callback) => {
+    usersCollection.insertOne(user, callback);
+}
+
+const getAllUsers = (callback) => {
+    usersCollection.find().toArray(callback);
+}
+
+module.exports = {createUser, getAllUsers}

@@ -2,9 +2,12 @@ var express = require('express');
 let router = express.Router();
 let controller = require('../controller/controller')
 
-// this route is for adding calculation history to db.
-router.post('/api/login', (req, res) => {
-    controller.createHistory(req, res);
+router.post('/api/user', (req, res) => {
+    controller.createUser(req, res);
+});
+
+router.get('/api/user',(req,res) => {
+    controller.getAllUsers(req,res);
 });
 
 module.exports = router;
