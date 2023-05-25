@@ -30,7 +30,8 @@ const createUser = (user) => {
 }
 
 $(document).ready(function(){
-  $('#formSubmit').click(()=>{
-      submitForm();
+  $('#signup').click(()=>{
+      console.log(1);
+      //submitForm();
   })
 });
