@@ -1,11 +1,20 @@
 const submitForm = () => {
   let formData = {};
-  formData.username = $('#username').val();
+  formData.email = $('#email').val();
+  let pw1 = $('#password').val();
+  let pw2 = $('#confirm_password').val();
+  
+  //Pw check
+  if (pw1 !== pw2) {
+    alert("Not matched")
+    return;
+  }
+
   formData.password = $('#password').val();
   // Print for test
   console.log('form data: ', formData);
   // Server update
-  createUser(formData)
+  //createUser(formData)
 }
 
 const createUser = (user) => {
@@ -21,10 +30,6 @@ const createUser = (user) => {
 }
 
 $(document).ready(function(){
-  $('.materialboxed').materialbox();
-  $('.modal').modal();
-
-  getCats();
   $('#formSubmit').click(()=>{
       submitForm();
   })
