@@ -1,5 +1,5 @@
 let model = require('../model/model');
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcryptjs'); //npm install bcryptjs
 
 const loginUser = (req,res) => {
     let user = req.body;
