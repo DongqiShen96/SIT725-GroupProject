@@ -12,8 +12,12 @@ const createUser = (user, callback) => {
     usersCollection.insertOne(user, callback);
 }
 
-const getAllUsers = (callback) => {
-    usersCollection.find().toArray(callback);
+const checkUser = (email,callback) => {
+    usersCollection.find({email:email}).toArray((err, result) => {
+        if (err) throw err;
+        callback(result.length > 0);
+    });
 }
 
-module.exports = {createUser, getAllUsers}
+
+module.exports = {createUser,checkUser}
