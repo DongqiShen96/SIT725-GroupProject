@@ -14,8 +14,26 @@ const submitLoginForm = () => {
   // Print for test
   console.log('form data: ', formData);
   // Server update
-  loginUser(formData)
+  loginUser(formData);
 }
+
+const loginUser = (user) => {
+  $.ajax({
+    url: 'api/login',
+    data: user,
+    type: 'POST',
+    success: (result) => {
+        if(result.statusCode === 200) {
+            localStorage.setItem('email', result.email); // Save email to localStorage
+            alert(result.message);
+            window.location.href = 'main.html'; // Redirect to another page
+        } else {
+            alert(result.message);
+        }
+    }
+  });
+}
+
 
 $(document).ready(function(){
   $('#login').click(()=>{
