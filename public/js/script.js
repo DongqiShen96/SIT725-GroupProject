@@ -16,6 +16,7 @@ const submitForm = () => {
     alert("Not matched")
     return;
   }
+  
   formData.email = $('#email').val();
   formData.password = $('#password').val();
   // Print for test
