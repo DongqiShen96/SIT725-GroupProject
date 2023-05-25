@@ -32,6 +32,6 @@ const createUser = (user) => {
 $(document).ready(function(){
   $('#signup').click(()=>{
       console.log(1);
-      //submitForm();
+      submitForm();
   })
 });
