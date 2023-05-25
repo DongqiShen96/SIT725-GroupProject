@@ -8,10 +8,10 @@ const submitForm = () => {
   createUser(formData)
 }
 
-const addCat = (cat) => {
+const createUser = (user) => {
   $.ajax({
-      url: 'api/cats',
-      data: cat,
+      url: 'api/user',
+      data: user,
       type: 'POST',
       success: (result) => {
           alert(result.message);
@@ -20,3 +20,12 @@ const addCat = (cat) => {
   });
 }
 
+$(document).ready(function(){
+  $('.materialboxed').materialbox();
+  $('.modal').modal();
+
+  getCats();
+  $('#formSubmit').click(()=>{
+      submitForm();
+  })
+});
