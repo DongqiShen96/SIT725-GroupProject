@@ -32,7 +32,7 @@ const createUser = (user) => {
       type: 'POST',
       success: (result) => {
           alert(result.message);
-          location.reload(); //Page reload
+          window.location.href = 'login.html'; // Redirect to another page
       }
   });
 }
