@@ -184,6 +184,7 @@ $(document).ready(function () {
     });
 });
 
+
 //user information page
 // Get the <span> element that closes the modal
 var spans = document.getElementsByClassName("close");
@@ -410,3 +411,4 @@ document
         console.error("Error:", error);
       });
   });
+

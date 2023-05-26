@@ -1,6 +1,7 @@
 const { MongoClient } = require('mongodb');
 const uri = "mongodb+srv://admin:admin@cluster0.cxhciec.mongodb.net/?retryWrites=true&w=majority";
 
+
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true, });
 let projectCollection;
 let userCollection, petCollection;
@@ -18,9 +19,7 @@ const connectDB = (callback) => {
     }
   });
 };
-// Real-time Collection updates
-const getUserCollection = () => userCollection;
-const getPetCollection = () => petCollection;
+
 
 client.connect(err => {
     
@@ -31,6 +30,10 @@ client.connect(err => {
         process.exit(1);
     }
 });
+// Real-time Collection updates
+const getUserCollection = () => userCollection;
+const getPetCollection = () => petCollection;
 
 module.exports = client;
 module.exports = { connectDB, getUserCollection, getPetCollection };
+

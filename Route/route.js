@@ -3,7 +3,6 @@ let router = express.Router();
 let controller = require('../controller/controller')
 const multer = require("multer");
 
-
 router.post('/api/user', (req, res) => {
     controller.createUser(req, res);
 });

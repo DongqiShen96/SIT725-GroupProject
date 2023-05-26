@@ -1,5 +1,6 @@
 let client = require('../dbConnection');
 const { getUserCollection, getPetCollection } = require("../dbConnection");
+
 //GroupProject is the database's name, History is the collection's name.
 let historyCollection = client.db('GroupProject').collection('History');
 let activityCollection = client.db('GroupProject').collection('Activity');
@@ -58,3 +59,4 @@ const findPets = (callback) => {
 
 
 module.exports = {createUser,checkUser, getUser, insertOneUser, insertOnePet, findUsers, findPets}
+
