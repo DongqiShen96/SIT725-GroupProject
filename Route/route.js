@@ -6,4 +6,8 @@ router.post('/api/user', (req, res) => {
     controller.createUser(req, res);
 });
 
+router.post('/api/login', (req, res) => {
+    controller.loginUser(req,res);
+});
+
 module.exports = router;

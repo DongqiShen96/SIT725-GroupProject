@@ -19,5 +19,16 @@ const checkUser = (email,callback) => {
     });
 }
 
+const getUser = (email, callback) => {
+    usersCollection.find({email: email}).toArray((err, result) => {
+        if (err) {
+            console.log('Error when finding user by email: ', err);
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+}
 
-module.exports = {createUser,checkUser}
+
+module.exports = {createUser,checkUser, getUser}
