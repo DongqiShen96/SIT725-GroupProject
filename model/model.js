@@ -1,5 +1,5 @@
 let client = require('../dbConnection');
-
+const { getUserCollection, getPetCollection } = require("../dbConnection");
 //GroupProject is the database's name, History is the collection's name.
 let historyCollection = client.db('GroupProject').collection('History');
 let activityCollection = client.db('GroupProject').collection('Activity');
@@ -7,7 +7,7 @@ let activitySheetCollection = client.db('GroupProject').collection('ActivityShee
 let petsCollection = client.db('GroupProject').collection('Pets');
 let usersCollection = client.db('GroupProject').collection('Users');
 
-//login in page
+
 const createUser = (user, callback) => {
     usersCollection.insertOne(user, callback);
 }
@@ -19,9 +19,18 @@ const checkUser = (email,callback) => {
     });
 }
 
+const getUser = (email, callback) => {
+    usersCollection.find({email: email}).toArray((err, result) => {
+        if (err) {
+            console.log('Error when finding user by email: ', err);
+            callback(err);
+        } else {
+            callback(null, result);
+        }
+    });
+}
 
-// User information page
-const { getUserCollection, getPetCollection } = require("../dbConnection");
+//userinformation page
 // Insert data
 const insertOneUser = (userInfo, callback) => {
   getUserCollection().insertOne(userInfo, callback);
@@ -46,4 +55,6 @@ const findPets = (callback) => {
   }
 };
 
-module.exports = { insertOneUser, insertOnePet, findUsers, findPets, createUser,checkUser };
+
+
+module.exports = {createUser,checkUser, getUser, insertOneUser, insertOnePet, findUsers, findPets}

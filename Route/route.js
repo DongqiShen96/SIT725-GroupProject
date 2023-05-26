@@ -3,8 +3,13 @@ let router = express.Router();
 let controller = require('../controller/controller')
 const multer = require("multer");
 
+
 router.post('/api/user', (req, res) => {
     controller.createUser(req, res);
+});
+
+router.post('/api/login', (req, res) => {
+    controller.loginUser(req,res);
 });
 
 // Multer configuration
@@ -34,7 +39,5 @@ router.post("/api/petinfo", controller.storePetInfo);
 // Obtain user and pet information
 router.get("/api/userinfo", controller.getUserInfo);
 router.get("/api/petinfo", controller.getPetInfo);
-
-
 
 module.exports = router;
