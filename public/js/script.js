@@ -37,7 +37,6 @@ const loginUser = (user) => {
 
 $(document).ready(function(){
   $('#login').click(()=>{
-      console.log(1)
       submitLoginForm();
   })
 });
