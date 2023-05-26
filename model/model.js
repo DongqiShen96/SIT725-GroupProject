@@ -8,4 +8,16 @@ let petsCollection = client.db('GroupProject').collection('Pets');
 let usersCollection = client.db('GroupProject').collection('Users');
 
 
-module.exports = {}
+const createUser = (user, callback) => {
+    usersCollection.insertOne(user, callback);
+}
+
+const checkUser = (email,callback) => {
+    usersCollection.find({email:email}).toArray((err, result) => {
+        if (err) throw err;
+        callback(result.length > 0);
+    });
+}
+
+
+module.exports = {createUser,checkUser}

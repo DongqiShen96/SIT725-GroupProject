@@ -11,7 +11,7 @@ app.use('/',router);
 // Route for the root URL
 app.use("/uploads", express.static("uploads"));
 app.get("/", function (req, res) {
-     res.sendFile(__dirname + "/public/user-information.html");
+     res.sendFile(__dirname + "/public/signup.html");
 });
 
 var port = process.env.port || 3000;
