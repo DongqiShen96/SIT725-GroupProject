@@ -1,3 +1,48 @@
+const submitFormSignIn = () => {
+  let formData = {};
+  let email1 = $('#email').val();
+  let pw1 = $('#password').val();
+  let pw2 = $('#confirm_password').val();
+  
+  //email check
+  let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+  if(!emailRegex.test(email1)) {
+    alert("Email is not valid");
+    return;
+  }
+
+  //Pw check
+  if (pw1 !== pw2) {
+    alert("Not matched")
+    return;
+  }
+  
+  formData.email = $('#email').val();
+  formData.password = $('#password').val();
+  // Print for test
+  console.log('form data: ', formData);
+  // Server update
+  createUser(formData)
+}
+
+const createUser = (user) => {
+  $.ajax({
+      url: 'api/user',
+      data: user,
+      type: 'POST',
+      success: (result) => {
+          alert(result.message);
+          window.location.href = 'login.html'; // Redirect to another page
+      }
+  });
+}
+
+$(document).ready(function(){
+  $('#signup').click(()=>{
+    submitFormSignIn();
+  })
+});
+
 // It's uglily now. I'll store the data to database and retrieve them when do coculation.
 const breedData = {
     GoldenRetriever: {
@@ -95,7 +140,7 @@ $(document).ready(function () {
     });
 });
 
-//user infomation page
+//user information page
 // Get the <span> element that closes the modal
 var spans = document.getElementsByClassName("close");
 // When the user clicks on <span> (x), close the modal
@@ -321,4 +366,3 @@ document
         console.error("Error:", error);
       });
   });
-

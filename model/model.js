@@ -7,6 +7,19 @@ let activitySheetCollection = client.db('GroupProject').collection('ActivityShee
 let petsCollection = client.db('GroupProject').collection('Pets');
 let usersCollection = client.db('GroupProject').collection('Users');
 
+//login in page
+const createUser = (user, callback) => {
+    usersCollection.insertOne(user, callback);
+}
+
+const checkUser = (email,callback) => {
+    usersCollection.find({email:email}).toArray((err, result) => {
+        if (err) throw err;
+        callback(result.length > 0);
+    });
+}
+
+
 // User information page
 const { getUserCollection, getPetCollection } = require("../dbConnection");
 // Insert data
@@ -33,4 +46,4 @@ const findPets = (callback) => {
   }
 };
 
-module.exports = { insertOneUser, insertOnePet, findUsers, findPets };
+module.exports = { insertOneUser, insertOnePet, findUsers, findPets, createUser,checkUser };

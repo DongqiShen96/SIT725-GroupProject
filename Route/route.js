@@ -3,6 +3,10 @@ let router = express.Router();
 let controller = require('../controller/controller')
 const multer = require("multer");
 
+router.post('/api/user', (req, res) => {
+    controller.createUser(req, res);
+});
+
 // Multer configuration
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
