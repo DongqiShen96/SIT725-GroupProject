@@ -1,15 +1,15 @@
 const submitLoginForm = () => {
   let formData = {};
-  let email1 = $('#email').val();
+  let email = $('#email').val();
   
   //email check
   let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
-  if(!emailRegex.test(email1)) {
+  if(!emailRegex.test(email)) {
     alert("Email is not valid");
     return;
   }
 
-  formData.email1 = $('#email').val();
+  formData.email = $('#email').val();
   formData.password = $('#password').val();
   // Print for test
   console.log('form data: ', formData);
