@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+var express = require('express');
+let router = express.Router();
+let controller = require('../controller/controller')
 const multer = require("multer");
-const controller = require("../controller/controller");
 
 // Multer configuration
 const storage = multer.diskStorage({
@@ -30,5 +30,7 @@ router.post("/api/petinfo", controller.storePetInfo);
 // Obtain user and pet information
 router.get("/api/userinfo", controller.getUserInfo);
 router.get("/api/petinfo", controller.getPetInfo);
+
+
 
 module.exports = router;

@@ -1,10 +1,8 @@
-const { MongoClient } = require("mongodb");
-const uri =
-  "mongodb+srv://admin:admin@cluster0.cxhciec.mongodb.net/?retryWrites=true&w=majority";
-const client = new MongoClient(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://admin:admin@cluster0.cxhciec.mongodb.net/?retryWrites=true&w=majority";
+
+const client = new MongoClient(uri, { useNewUrlParser: true,  useUnifiedTopology: true, });
+let projectCollection;
 
 let userCollection, petCollection;
 // Connecting to the database
@@ -25,4 +23,16 @@ const connectDB = (callback) => {
 const getUserCollection = () => userCollection;
 const getPetCollection = () => petCollection;
 
+
+client.connect(err => {
+    
+    if (!err) {
+        console.log('Mongo DB connected');
+    } else {
+        console.log('Error: ', err);
+        process.exit(1);
+    }
+});
+
+module.exports = client;
 module.exports = { connectDB, getUserCollection, getPetCollection };
