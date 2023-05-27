@@ -1,4 +1,4 @@
-var email = null;
+let user_email;
 
 //Trung's work: Sign-up
 const submitFormSignIn = () => {
@@ -73,9 +73,9 @@ const loginUser = (user) => {
     type: 'POST',
     success: (result) => {
       if (result.statusCode === 200) {
-        email = user.email;
-        alert(result.message);
-        window.location.href = 'health-track.html'; // Redirect to another page
+        localStorage.setItem('user_email', user.email);
+        alert(user_email)
+        window.location.href = 'main.html'; // Redirect to another page
       } else {
         alert(result.message);
       }
@@ -205,11 +205,12 @@ const addContentToDataset = (project) => {
 };
 
 const getContent = () => {
+  const user_email = localStorage.getItem('user_email');
   $.get('/api/Activity', (response) => {
     if (response.statusCode === 200) {
       const activities = response.data;
       activities
-        .filter(activity => activity.email === '123@deakin.edu.au')
+        .filter(activity => activity.email === user_email)
         .forEach(addContent);
       sortContentByTime();
     }
@@ -245,7 +246,8 @@ $(document).ready(function () {
 });
 
 const submitaddingForm = () => {
-  let formData = { email: '123@deakin.edu.au' };
+  const user_email = localStorage.getItem('user_email');
+  let formData = { email: user_email };
   formData.time = $('#time').val();
   formData.event = $('#event').val();
 

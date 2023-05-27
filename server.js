@@ -10,7 +10,7 @@ app.use('/',router);
 
 // Redirect to main.html for root URL
 app.get("/", function (req, res) {
-     res.redirect("/main.html");
+     res.redirect("/login.html");
 });
 
 var port = process.env.port || 3000;
