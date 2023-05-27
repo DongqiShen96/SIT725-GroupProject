@@ -64,4 +64,15 @@ const getAllProjects = (req, res) => {
     });
 }
 
-module.exports = {createUser, loginUser,createProjects,getAllProjects}
+const deleteProject= (req, res) => {
+    let projectId = req.body.id;
+    model.remove(projectId, (error, result) => {
+        if (error) {
+            res.json({ statusCode: 400, message: error });
+        } else {
+            res.json({ statusCode: 200, data: result, message: 'Successfully removed' });
+        }
+    });
+}
+
+module.exports = {createUser, loginUser,createProjects,getAllProjects,deleteProject}

@@ -18,4 +18,8 @@ router.get('/api/Activity', (req, res) => {
     controller.getAllProjects(req,res);
 });
 
+router.delete('/api/Activity', (req, res) => {
+    controller.deleteProject(req,res);
+});
+
 module.exports = router;
