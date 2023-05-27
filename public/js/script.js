@@ -89,7 +89,6 @@ $(document).ready(function () {
   })
 });
 
-//I'll store the data to database and retrieve them when do coculation.
 const breedData = {
   GoldenRetriever: {
     weight: { min: 25, max: 36 },
@@ -133,11 +132,7 @@ const breedData = {
   },
 };
 
-
-
-
-
-// calculate pet's health status and then show the result in modal
+// calculate pet's health status and then show the result
 const doCalculate = (pet) => {
   let weightStatus, heightStatus, html;
 
@@ -166,15 +161,67 @@ const doCalculate = (pet) => {
   html = "<h3>" + pet.status + "</h3>";
   $("#result").append(html);
 
-  //addHistory(pet);
+  addHistory(pet);
+}
+
+//uses jQuery's ajax function to send an HTTP POST request to the api/add_history URL endpoint.
+const addHistory = (history) => {
+  $.ajax({
+      url: 'api/add_history',
+      data: history,
+      type: 'POST'
+  });
+}
+
+// dataType: 'json', specifies the expected data type of the response is JSON 
+const retrieveHistory = () => {
+  $.ajax({
+      url: '/api/retrieve_history',
+      type: 'POST',
+      dataType: 'json',
+      success: function(result) {
+          addTable(result.data);
+      }
+  });
+}
+
+const addTable = (items) => {
+  let itemToAppend = '';
+  let date = new Date();
+  let period = $('#period').val();
+
+  switch (period) {
+    case 'week':
+      date.setDate(date.getDate() - 7);
+      break;
+    case 'month':
+      date.setDate(date.getDate() - 30 );
+      break;
+    case 'three-month':
+      date.setDate(date.getDate() - 90 );
+      break;
+    case 'all':
+      date = new Date('1970-01-01');
+      break;
+  }
+
+  items.forEach(item => {
+    if (new Date(item.date) >= date) {
+      itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;  
+    }
+  });
+  document.getElementById('table-body').innerHTML = itemToAppend;
 }
 
 $(document).ready(function () {
   $('.materialboxed').materialbox();
   $('select').formSelect();
 
-  $('#formSubmit').click(() => {
-    submitaddingForm();
+  $('#calculate').click(() => {
+    calculateForm();
+  });
+  $('#requireHistory').click(() => {
+    retrieveHistory();
   });
 });
 

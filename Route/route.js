@@ -26,4 +26,14 @@ router.put('/api/Activity', (req, res) => {
     controller.updateProject(req, res);
 });
 
+// this route is for adding calculation history to db.
+router.post('/api/add_history', (req, res) => {
+    controller.createHistory(req, res);
+});
+
+// Define an API endpoint to retrieve the history data
+router.post('/api/retrieve_history', (req, res) => {
+    controller.getHistory(req, res);
+});
+
 module.exports = router;
