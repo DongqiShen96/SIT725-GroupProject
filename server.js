@@ -8,10 +8,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use('/',router);
 
-// Route for the root URL
-app.use("/uploads", express.static("uploads"));
+// Redirect to main.html for root URL
 app.get("/", function (req, res) {
-     res.sendFile(__dirname + "/public/signup.html");
+     res.redirect("/main.html");
 });
 
 var port = process.env.port || 3000;

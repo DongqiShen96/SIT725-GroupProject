@@ -4,75 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pet management web application</title>
+    <title>Furry Kit</title>
+
+    <!-- Custom Style Sheet-->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="body">
     <div class="header">
-        <div class="logo"><img src="images/logo.png" alt="Logo"></div>
-        <div class="header-title">Pet Management</div>
+        <div class="logo"><a href="main.html"><img src="images/logo.png" alt="Logo"></a></div>
+        <div class="header-title">Furry Kit</div>
         <div class="about-us"><a href="About-us.html">About Us</a></div>
     </div>
     <div class="nav">
-        <a href="main.html"><img src="image1.jpg" alt="Navigation Image 1"></a>
-        <a href="Health-track.html"><img src="image2.jpg" alt="Navigation Image 2"></a>
+        <a href="main.html"><img src="./images/schedule.png" alt="Navigation Image 1"></a>
+        <a href="Health-track.html"><img src="./images/health track.png" alt="Navigation Image 2"></a>
         <a href="user-information.html" class="user-settings">User</a>
     </div>
 
-    <div class="main-content">
-        <h1>
-            Daily activity management
-        </h1>
-        <label for="month-dropdown">Month</label>
-        <select id="month-dropdown">
-            <option value="1">January</option>
-            <option value="2">February</option>
-            <option value="3">March</option>
-            <option value="4">April</option>
-            <option value="5">May</option>
-            <option value="6">June</option>
-            <option value="7">July</option>
-            <option value="8">August</option>
-            <option value="9">September</option>
-            <option value="10">October</option>
-            <option value="11">November</option>
-            <option value="12">December</option>
-        </select>
-
-        <label for="day-dropdown">Day</label>
-        <select id="day-dropdown">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select>
-        <button type="submit">Search</button>
-
-        <div class="event-checklist">Event Checklist</div>
-        <button class="main-add-event" id="add-event">Add Event</button>
-
-        <!-- model -->
-        <form id="event-form">
-            <label for="time">Time:</label>
-            <input type="time" id="time" name="time"><br><br>
-
-            <label for="event">Event:</label>
-            <input type="text" id="event" name="event"><br><br>
-
-            <label for="detail">Detail:</label>
-            <textarea id="detail" name="detail" rows="4" cols="50"></textarea><br><br>
-
-            <input type="submit" value="Submit">
-            <button type="button" id="close-button">Close</button>
-        </form>
-
-        <div class="main-container">
-            <div id="event-list">
-            </div>
+    <main class="main-content">
+        <div class="content-to-move">
+            <h2>Daily activity management</h2>
+            <button class="btn modal-trigger" data-target="modal1">Add Event</button>
+            <button class="btn modal-trigger">Help me do it</button>
+            <div class="event-checklist">Activity Checklist</div>
+            <div class="row" id="card-section"></div>
+            <div class="row" id="edit-section"></div>
         </div>
 
+        <!-- Modals -->
+        <div id="modal1" class="modal">
+            <div class="row modal-content">
+                <form class="col s12">
+                    <div class="input-field col s6">
+                        <input id="time" type="time" class="validate" placeholder="Enter event time">
+                        <label for="time">Time</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="event" type="text" class="validate" placeholder="Enter event details">
+                        <label for="event">Event</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn" id="formSubmit">submit</a>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+        <div id="modal2" class="modal">
+            <div class="row modal-content">
+                <form class="col s12">
+                    <div class="input-field col s6">
+                        <input id="time" type="time" class="validate" placeholder="Enter event time">
+                        <label for="time">Time</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="event" type="text" class="validate" placeholder="Enter event details">
+                        <label for="event">Event</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn" id="EditSubmit">update</a>
+                <a href="#!" class="modal-close waves-effect waves-red btn-flat">Close</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
 </body>
-<script src="js/scripts.js"></script>
 
 </html>
