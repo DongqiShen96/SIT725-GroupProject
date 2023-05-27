@@ -216,6 +216,22 @@ const getContent = () => {
   });
 };
 
+const updateContent = (projectId, updatedData) => {
+  $.ajax({
+    url: '/api/Activity',
+    type: 'PUT',
+    data: { id: projectId, ...updatedData },
+    success: (result) => {
+      if (result.statusCode === 200) {
+        location.reload();
+      } else {
+        console.log(result);
+      }
+    },
+    error: (error) => console.log(error),
+  });
+};
+
 $(document).ready(function () {
   $('select').formSelect();
   $('.modal').modal();
@@ -224,6 +240,8 @@ $(document).ready(function () {
 
   $('#addingSubmit').one('click', submitaddingForm);
   $(document).on('click', '.delete-btn', deleteContent);
+  $(document).on('click', '.edit-btn', openUpdateForm);
+  $('#EditSubmit').click(updateSubmit);
 });
 
 const submitaddingForm = () => {
@@ -279,3 +297,35 @@ const deleteContent = function () {
     }
   });
 };
+
+//update activity
+const openUpdateForm = function () {
+  let projectId = $(this).closest('.card-container').data('mongo-id');
+  let currentTime = $(this).closest('.row').find('.col.s4').text();
+  let currentEvent = $(this).closest('.row').find('.col.s6').text();
+
+  $('#modal2 #time').val(currentTime);
+  $('#modal2 #event').val(currentEvent);
+
+  $('#modal2').data('project-id', projectId);
+  $('#modal2').modal('open');
+};
+
+const updateSubmit = function () {
+  let projectId = $('#modal2').data('project-id');
+  let updatedData = {
+    time: $('#modal2 #time').val(),
+    event: $('#modal2 #event').val()
+  };
+
+  if (!updatedData.time || !updatedData.event) {
+    alert("Please fill out both time and event fields.");
+    return;
+  }
+
+  updateContent(projectId, updatedData);
+  $('#modal2').modal('close');
+};
+
+
+

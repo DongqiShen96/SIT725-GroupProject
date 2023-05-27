@@ -43,4 +43,8 @@ const remove = (projectId, callback) => {
     Activitycollection.deleteOne({ _id: new ObjectId(projectId) }, callback);
 }
 
-module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove }
+const updateProject = (projectId, updateData, callback) => {
+    Activitycollection.updateOne({ _id: new ObjectId(projectId) }, { $set: updateData }, callback);
+};
+
+module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove,updateProject }

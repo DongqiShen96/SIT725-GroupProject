@@ -75,4 +75,18 @@ const deleteProject= (req, res) => {
     });
 }
 
-module.exports = {createUser, loginUser,createProjects,getAllProjects,deleteProject}
+const updateProject = (req, res) => {
+    let projectId = req.body.id;
+    let updatedData = req.body;
+    delete updatedData.id; // remove id from the update data
+
+    model.updateProject(projectId, updatedData, (error, result) => {
+        if (error) {
+            res.json({ statusCode: 400, message: error });
+        } else {
+            res.json({ statusCode: 200, data: result, message: 'Successfully updated' });
+        }
+    });
+};
+
+module.exports = {createUser, loginUser,createProjects,getAllProjects,deleteProject,updateProject}

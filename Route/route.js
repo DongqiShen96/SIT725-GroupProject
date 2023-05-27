@@ -22,4 +22,8 @@ router.delete('/api/Activity', (req, res) => {
     controller.deleteProject(req,res);
 });
 
+router.put('/api/Activity', (req, res) => {
+    controller.updateProject(req, res);
+});
+
 module.exports = router;
