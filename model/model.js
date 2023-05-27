@@ -1,4 +1,5 @@
 let client = require('../dbConnection');
+const ObjectId = require('mongodb').ObjectId;
 
 //GroupProject is the database's name, History is the collection's name.
 let historyCollection = client.db('GroupProject').collection('History');
@@ -12,15 +13,15 @@ const createUser = (user, callback) => {
     usersCollection.insertOne(user, callback);
 }
 
-const checkUser = (email,callback) => {
-    usersCollection.find({email:email}).toArray((err, result) => {
+const checkUser = (email, callback) => {
+    usersCollection.find({ email: email }).toArray((err, result) => {
         if (err) throw err;
         callback(result.length > 0);
     });
 }
 
 const getUser = (email, callback) => {
-    usersCollection.find({email: email}).toArray((err, result) => {
+    usersCollection.find({ email: email }).toArray((err, result) => {
         if (err) {
             console.log('Error when finding user by email: ', err);
             callback(err);
@@ -38,4 +39,8 @@ const getProjects = (callback) => {
     Activitycollection.find({}).toArray(callback);
 };
 
-module.exports = {createUser,checkUser, getUser,insertProjects,getProjects}
+const remove = (projectId, callback) => {
+    Activitycollection.deleteOne({ _id: new ObjectId(projectId) }, callback);
+}
+
+module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove }

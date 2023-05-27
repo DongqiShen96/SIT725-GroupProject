@@ -174,7 +174,7 @@ $(document).ready(function () {
   $('select').formSelect();
 
   $('#formSubmit').click(() => {
-    submitForm();
+    submitaddingForm();
   });
 });
 
@@ -222,10 +222,11 @@ $(document).ready(function () {
 
   getContent();
 
-  $('#formSubmit').click(submitForm);
+  $('#addingSubmit').one('click', submitaddingForm);
+  $(document).on('click', '.delete-btn', deleteContent);
 });
 
-const submitForm = () => {
+const submitaddingForm = () => {
   let formData = { email: '123@deakin.edu.au' };
   formData.time = $('#time').val();
   formData.event = $('#event').val();
@@ -258,4 +259,23 @@ const sortContentByTime = () => {
   });
 
   $cardSection.append(sortedCards);
+};
+
+//delete activity
+const deleteContent = function () {
+  let projectId = $(this).closest('.card-container').data('mongo-id');
+
+  $.ajax({
+    url: '/api/Activity',
+    type: 'DELETE',
+    data: { id: projectId },
+    success: function (result) {
+      console.log(result);
+      $(this).closest('.card-container').remove();
+      location.reload();
+    },
+    error: function (error) {
+      console.log(error);
+    }
+  });
 };
