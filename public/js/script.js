@@ -89,6 +89,10 @@ $(document).ready(function () {
   })
 });
 
+
+/*
+Tim's work
+*/
 const breedData = {
   GoldenRetriever: {
     weight: { min: 25, max: 36 },
@@ -132,6 +136,19 @@ const breedData = {
   },
 };
 
+// when the 'calculate' bottom clicked, get form data from web and do calculate
+const calculateForm = () => {
+  let formData = {};
+  formData.breed = $('#breed').val();
+  formData.name = $('#name').val();
+  formData.weight = $('#weight').val();
+  formData.height = $('#height').val();
+
+  console.log("Form Data Submitted: ", formData);
+
+  doCalculate(formData);
+}
+
 // calculate pet's health status and then show the result
 const doCalculate = (pet) => {
   let weightStatus, heightStatus, html;
@@ -155,7 +172,7 @@ const doCalculate = (pet) => {
     heightStatus = `and ${pet.name}'s height is normal.`;
   }
 
-  pet.date = new Date();
+  pet.date = new Date().toLocaleDateString('en-US');//set the formate of date (5/16/2023);
   pet.status = weightStatus + heightStatus;
 
   html = "<h3>" + pet.status + "</h3>";
@@ -225,6 +242,9 @@ $(document).ready(function () {
   });
 });
 
+/*
+Ender's work
+*/
 //add activity
 const createCardContainer = (item) => {
   let cardContainer = $('<div>').addClass('col s12 center-align card-container');
