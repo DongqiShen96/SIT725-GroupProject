@@ -178,6 +178,84 @@ $(document).ready(function () {
   });
 });
 
+//add activity
+const createCardContainer = (item) => {
+  let cardContainer = $('<div>').addClass('col s12 center-align card-container');
+  let card = $('<div>').addClass('card medium');
+  let cardContent = $('<div>').addClass('card-content');
+  let cardRow = $('<div>').addClass('row valign-wrapper');
+  let cardTime = $('<div>').addClass('col s4').text(item.time);
+  let cardEvent = $('<div>').addClass('col s6').text(item.event);
+  let deleteButton = $('<button>').addClass('col s2 delete-btn').text('Delete');
+  let editButton = $('<button>').addClass('col s2 edit-btn').text('Edit');
 
+  cardContainer.data('mongo-id', item._id);
+  cardRow.append(cardTime, cardEvent, deleteButton, editButton);
+  cardContent.append(cardRow);
+  card.append(cardContent);
+  cardContainer.append(card);
 
+  return cardContainer;
+};
 
+const addContentToDataset = (project) => {
+  $.post('/api/Activity', project, (result) => {
+    location.reload();
+  });
+};
+
+const getContent = () => {
+  $.get('/api/Activity', (response) => {
+    if (response.statusCode === 200) {
+      const activities = response.data;
+      activities
+        .filter(activity => activity.email === '123@deakin.edu.au')
+        .forEach(addContent);
+      sortContentByTime();
+    }
+  });
+};
+
+$(document).ready(function () {
+  $('select').formSelect();
+  $('.modal').modal();
+
+  getContent();
+
+  $('#formSubmit').click(submitForm);
+});
+
+const submitForm = () => {
+  let formData = { email: '123@deakin.edu.au' };
+  formData.time = $('#time').val();
+  formData.event = $('#event').val();
+
+  if (!formData.time || !formData.event) {
+    alert("Please fill out both time and event fields.");
+    return;
+  }
+
+  let cardContainer = createCardContainer(formData);
+  $('#card-section').append(cardContainer);
+  addContentToDataset(formData);
+  $('#modal1').modal('close');
+};
+
+const addContent = (item) => {
+  let cardContainer = createCardContainer(item);
+  $('#card-section').append(cardContainer);
+};
+
+const sortContentByTime = () => {
+  let $cardSection = $('#card-section');
+  let $cards = $cardSection.children('.card-container');
+
+  let sortedCards = $cards.sort((a, b) => {
+    let timeA = $(a).find('.row .col.s4').text();
+    let timeB = $(b).find('.row .col.s4').text();
+
+    return timeA.localeCompare(timeB);
+  });
+
+  $cardSection.append(sortedCards);
+};
