@@ -10,4 +10,12 @@ router.post('/api/login', (req, res) => {
     controller.loginUser(req,res);
 });
 
+router.post('/api/Activity', (req, res) => {
+    controller.createProjects(req,res);
+});
+
+router.get('/api/Activity', (req, res) => {
+    controller.getAllProjects(req,res);
+});
+
 module.exports = router;
