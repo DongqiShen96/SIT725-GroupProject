@@ -1,81 +1,82 @@
-let model = require('../model/model');
-var bcrypt = require('bcryptjs');
+const model = require("../model/model");
 
-const createUser = (req,res) => {
-    let user = req.body;
-    let salt = bcrypt.genSaltSync(10);
-    let hash = bcrypt.hashSync(user.password, salt);
-    user.password = hash;
-
-    //If not exist, add user
-    model.checkUser(user.email, (exists) => {
-        if (exists) {
-            res.json({statusCode: 400, message: 'You already signed up'});
-        } else {``
-            model.createUser(user, (err, result) => {
-                if (err) {
-                    res.json({statusCode: 400, message: err});
-                } else {
-                    res.json({statusCode: 200, data: result, message: 'New user added'});
-                }
-            });
-        }
-    });
-}
-
-const loginUser = (req,res) => {
-    let user = req.body;
-    model.getUser(user.email, (err, result) => {
-        if (err) {
-            res.json({statusCode: 400, message: err});
-        } else {
-            //If user sign-up yet check
-            if(result.length > 0){
-                if(bcrypt.compareSync(user.password, result[0].password)) {
-                    res.json({statusCode: 200, data: result, message: 'Logged in'}); //Correct pw
-                } else {
-                    res.json({statusCode: 400, message: 'Password does not match'}); //Wrong pw
-                }
-            } else {
-                res.json({statusCode: 400, message: 'User does not exist'}); //User not sign-up yet
-            }
-        }
-    });
-}
-
-
-//user information page
 // Processing user information
 const storeUserInfo = (req, res) => {
   const userInfo = req.body;
-  model.insertOneUser(userInfo, (err, result) => {
+  model.findUserByEmail(userInfo.email, (err, user) => {
     if (err) {
       res.json({ statusCode: 400, message: err });
+      return;
+    }
+    if (user) {
+      // User with the given email already exists, update the user
+      model.updateUserByEmail(userInfo, (err, result) => {
+        if (err) {
+          res.json({ statusCode: 400, message: err });
+        } else {
+          res.json({
+            statusCode: 200,
+            data: result,
+            message: "Successfully updated",
+          });
+        }
+      });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully added",
+      // User with the given email does not exist, create a new user
+      model.insertOneUser(userInfo, (err, result) => {
+        if (err) {
+          res.json({ statusCode: 400, message: err });
+        } else {
+          res.json({
+            statusCode: 200,
+            data: result,
+            message: "Successfully added",
+          });
+        }
       });
     }
   });
 };
-// Processing user information
+
+// Processing pet information
 const storePetInfo = (req, res) => {
   const petInfo = req.body;
-  model.insertOnePet(petInfo, (err, result) => {
+  model.findPetByNameAndEmail(petInfo.name, petInfo.email, (err, pet) => {
     if (err) {
       res.json({ statusCode: 400, message: err });
+      return;
+    }
+    if (pet) {
+      // Pet with the given name and email already exists, update the pet
+      model.updatePetByNameAndEmail(petInfo, (err, result) => {
+        if (err) {
+          res.json({ statusCode: 400, message: err });
+        } else {
+          res.json({
+            statusCode: 200,
+            data: result,
+            message: "Successfully updated",
+          });
+        }
+      });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully added",
+      // Pet with the given name and email does not exist, create a new pet
+      model.insertOnePet(petInfo, (err, result) => {
+        if (err) {
+          res.json({ statusCode: 400, message: err });
+        } else {
+          res.json({
+            statusCode: 200,
+            data: result,
+            message: "Successfully added",
+          });
+        }
       });
     }
   });
 };
-// get of user information
+
+// Get of user information
 const getUserInfo = (req, res) => {
   model.findUsers((err, result) => {
     if (err) {
@@ -85,7 +86,8 @@ const getUserInfo = (req, res) => {
     }
   });
 };
-// get of pet information
+
+// Get of pet information
 const getPetInfo = (req, res) => {
   model.findPets((err, result) => {
     if (err) {
@@ -96,6 +98,4 @@ const getPetInfo = (req, res) => {
   });
 };
 
-
-module.exports = {createUser, loginUser, storeUserInfo, storePetInfo, getUserInfo, getPetInfo}
-
+module.exports = { storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
