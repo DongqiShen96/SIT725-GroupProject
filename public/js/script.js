@@ -11,37 +11,77 @@ function hideModal(modalId) {
 
 // Function to validate phone number
 function validatePhoneNumber(phoneNumber) {
-  var re = /^\d+$/;
-  return re.test(phoneNumber);
+  if (phoneNumber) {
+    var re = /^\d+$/;
+    return re.test(phoneNumber);
+  } else {
+    return true;
+  }
 }
-
-fetch("/api/userinfo")
-  .then((response) => response.json())
-  .then((data) => {
-    if (data && data.data && data.data.length > 0) {
-      const userInfo = data.data[0];
-      document.querySelector(
-        "#username"
-      ).innerText = `Name: ${userInfo.username}`;
-      document.querySelector(
-        "#birthday"
-      ).innerText = `Birthday: ${userInfo.birthday}`;
-      document.querySelector(
-        "#gender"
-      ).innerText = `Gender: ${userInfo.gender}`;
-      document.querySelector("#email").innerText = `Email: ${userInfo.email}`;
-      document.querySelector(
-        "#phone"
-      ).innerText = `Phone Number: ${userInfo.phone}`;
-      if (userInfo && userInfo.photo) {
-        document.querySelector("#photo-preview").src = userInfo.photo;
+//Positioning User Form
+$(document).ready(function () {
+  $.ajax({
+    url: "/api/userinfo",
+    type: "GET",
+    success: (result) => {
+      if (result && result.data && result.data.length > 0) {
+        for (let i = 0; i < result.data.length; i++) {
+          if (result.data[i].email == localStorage.getItem("user_email")) {
+            var userInfo = result.data[i];
+          }
+        }
+        document.querySelector(
+          "#username"
+        ).innerText = `Name: ${userInfo.username}`;
+        document.querySelector(
+          "#birthday"
+        ).innerText = `Birthday: ${userInfo.birthday}`;
+        document.querySelector(
+          "#gender"
+        ).innerText = `Gender: ${userInfo.gender}`;
+        // let tempEmail = localStorage.getItem("user_email");
+        document.querySelector("#email").innerText = `Email: ${userInfo.email}`;
+        // document.querySelector("#email").innerText = "Email:" + tempEmail;
       }
-    }
+    },
+    error: (error) => console.log(error),
   });
+
+  //Positioning Pet Form
+  $.ajax({
+    url: "/api/petinfo",
+    type: "GET",
+    success: (result) => {
+      console.log(result);
+      if (result && result.data && result.data.length > 0) {
+        for (let i = 0; i < result.data.length; i++) {
+          if (result.data[i].email == localStorage.getItem("user_email")) {
+            var petInfo = result.data[i];
+          }
+        }
+        document.querySelector(
+          "#pet-name"
+        ).innerText = `Name: ${petInfo.petName}`;
+        document.querySelector(
+          "#pet-type"
+        ).innerText = `Type: ${petInfo.petType}`;
+        document.querySelector(
+          "#pet-breed"
+        ).innerText = `Breed: ${petInfo.petBreed}`;
+        document.querySelector("#pet-age").innerText = `Age: ${petInfo.petAge}`;
+        document.querySelector(
+          "#pet-gender"
+        ).innerText = `Gender: ${petInfo.petGender}`;
+        document.querySelector(
+          "#pet-weight"
+        ).innerText = `Weight: ${petInfo.petWeight}`;
+      }
+    },
+  });
+});
 
 // Function to update user information
 function updateUserInfo(modalId) {
-  // displayModal(modalId);
   document
     .querySelector("#user-form")
     .addEventListener("submit", function (event) {
@@ -50,7 +90,7 @@ function updateUserInfo(modalId) {
         username: document.querySelector("#user-form #username").value,
         birthday: document.querySelector("#user-form #birthday").value,
         gender: document.querySelector("#user-form #gender").value,
-        email: document.querySelector("#user-form #email").value,
+        email: localStorage.getItem("user_email"),
         phone: document.querySelector("#user-form #phone").value,
       };
 
@@ -80,8 +120,6 @@ function updateUserInfo(modalId) {
 
 // Function to update pet information
 function updatePetInfo(modalId) {
-  // displayModal(modalId);
-
   document
     .querySelector("#pet-form")
     .addEventListener("submit", function (event) {
@@ -93,6 +131,7 @@ function updatePetInfo(modalId) {
         petAge: document.querySelector("#pet-form #pet-age").value,
         petGender: document.querySelector("#pet-form #pet-gender").value,
         petWeight: document.querySelector("#pet-form #pet-weight").value,
+        email: localStorage.getItem("user_email"),
       };
 
       $.ajax({
@@ -121,8 +160,8 @@ $(".close").on("click", function () {
 });
 
 // When the user clicks the button, open the modal
-var userEditBtn = document.querySelector("#user-edit-btn");
-var petEditBtn = document.querySelector("#pet-edit-btn");
+// var userEditBtn = document.querySelector("#user-edit-btn");
+// var petEditBtn = document.querySelector("#pet-edit-btn");
 $("#user-edit-btn").on("click", function () {
   $("select").formSelect();
   $("#userModal").css("display", "block");
@@ -132,10 +171,10 @@ $("#pet-edit-btn").on("click", function () {
   $("#petModal").css("display", "block");
 });
 
-userEditBtn.addEventListener("click", function () {
-  updateUserInfo("userModal");
-});
+// userEditBtn.addEventListener("click", function () {
+//   updateUserInfo("userModal");
+// });
 
-petEditBtn.addEventListener("click", function () {
-  updatePetInfo("petModal");
-});
+// petEditBtn.addEventListener("click", function () {
+//   updatePetInfo("petModal");
+// });

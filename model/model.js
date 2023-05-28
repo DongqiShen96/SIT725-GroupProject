@@ -21,7 +21,7 @@ const updateUserByEmail = (userInfo, callback) => {
     callback
   );
 };
-const updatePetByNameAndEmail = (petInfo, callback) => {
+const updatePetByEmail = (petInfo, callback) => {
   getPetCollection().updateOne(
     { name: petInfo.name, email: petInfo.email },
     { $set: petInfo },
@@ -39,17 +39,17 @@ const findPets = (callback) => {
 const findUserByEmail = (email, callback) => {
   getUserCollection().findOne({ email: email }, callback);
 };
-const findPetByNameAndEmail = (name, email, callback) => {
-  getPetCollection().findOne({ name: name, email: email }, callback);
+const findPetByEmail = (email, callback) => {
+  getPetCollection().findOne({ email: email }, callback);
 };
 
 module.exports = {
   insertOneUser,
   insertOnePet,
   updateUserByEmail,
-  updatePetByNameAndEmail,
+  updatePetByEmail,
   findUsers,
   findPets,
   findUserByEmail,
-  findPetByNameAndEmail,
+  findPetByEmail,
 };

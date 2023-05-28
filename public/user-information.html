@@ -74,24 +74,24 @@
         <!-- User information form -->
         <form id="user-form">
           <label for="username">Your Name:</label>
-          <input type="text" id="username" name="username" />
+          <input type="text" id="username" name="username" required />
           <br />
           <label for="birthday">Birthday:</label>
-          <input type="date" id="birthday" name="birthday" />
+          <input type="date" id="birthday" name="birthday" required />
           <br />
           <label for="gender">Gender:</label>
           <select id="gender" name="gender">
-            <option value="">Select Gender</option>
+            <!-- <option value="">Select Gender</option> -->
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
           </select>
           <br />
-          <label for="email">Email:</label>
+          <!-- <label for="email">Email:</label>
           <input type="email" id="email" name="email" />
-          <br />
+          <br /> -->
           <label for="phone">Phone Number:</label>
-          <input type="tel" id="phone" name="phone" />
+          <input type="tel" id="phone" name="phone" required />
           <br />
           <!-- save -->
           <button class="user-info-submit-btn" id="user-submit-btn">
@@ -109,11 +109,11 @@
         <!-- Pet information form -->
         <form id="pet-form">
           <label class="user-info-label" for="pet-name">Pet Name:</label>
-          <input type="text" id="pet-name" name="pet-name" />
+          <input type="text" id="pet-name" name="pet-name" required />
           <br />
           <label class="user-info-label" for="pet-type">Pet Type:</label>
           <select id="pet-type" name="pet-type">
-            <option value="">Select Pet Type</option>
+            <!-- <option value="">Select Pet Type</option> -->
             <option value="dog">Dog</option>
             <option value="cat">Cat</option>
           </select>
@@ -126,7 +126,7 @@
           </select>
           <br />
           <label class="user-info-label" for="pet-age">Age:</label>
-          <input type="number" id="pet-age" name="pet-age" />
+          <input type="number" id="pet-age" name="pet-age" required />
           <br />
           <label class="user-info-label" for="pet-gender">Gender:</label>
           <select id="pet-gender" name="pet-gender">
@@ -136,7 +136,7 @@
           </select>
           <br />
           <label class="user-info-label" for="pet-weight">Weight:</label>
-          <input type="number" id="pet-weight" name="pet-weight" />
+          <input type="number" id="pet-weight" name="pet-weight" required />
           <br />
           <!-- save -->
           <button class="user-info-submit-btn" id="pet-submit-btn">

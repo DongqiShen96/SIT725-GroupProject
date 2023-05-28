@@ -9,7 +9,6 @@ const storeUserInfo = (req, res) => {
       return;
     }
     if (user) {
-      // User with the given email already exists, update the user
       model.updateUserByEmail(userInfo, (err, result) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
@@ -41,14 +40,14 @@ const storeUserInfo = (req, res) => {
 // Processing pet information
 const storePetInfo = (req, res) => {
   const petInfo = req.body;
-  model.findPetByNameAndEmail(petInfo.name, petInfo.email, (err, pet) => {
+  model.findPetByEmail(petInfo.email, (err, pet) => {
     if (err) {
       res.json({ statusCode: 400, message: err });
       return;
     }
     if (pet) {
       // Pet with the given name and email already exists, update the pet
-      model.updatePetByNameAndEmail(petInfo, (err, result) => {
+      model.updatePetByEmail(petInfo, (err, result) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
@@ -98,4 +97,9 @@ const getPetInfo = (req, res) => {
   });
 };
 
-module.exports = { storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
+module.exports = {
+  storeUserInfo,
+  storePetInfo,
+  getUserInfo,
+  getPetInfo,
+};
