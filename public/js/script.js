@@ -74,7 +74,7 @@ const loginUser = (user) => {
     success: (result) => {
       if (result.statusCode === 200) {
         localStorage.setItem('user_email', user.email);
-        alert(user_email)
+        alert(result.message)
         window.location.href = 'main.html'; // Redirect to another page
       } else {
         alert(result.message);
@@ -184,21 +184,21 @@ const doCalculate = (pet) => {
 //uses jQuery's ajax function to send an HTTP POST request to the api/add_history URL endpoint.
 const addHistory = (history) => {
   $.ajax({
-      url: 'api/add_history',
-      data: history,
-      type: 'POST'
+    url: 'api/add_history',
+    data: history,
+    type: 'POST'
   });
 }
 
 // dataType: 'json', specifies the expected data type of the response is JSON 
 const retrieveHistory = () => {
   $.ajax({
-      url: '/api/retrieve_history',
-      type: 'POST',
-      dataType: 'json',
-      success: function(result) {
-          addTable(result.data);
-      }
+    url: '/api/retrieve_history',
+    type: 'POST',
+    dataType: 'json',
+    success: function (result) {
+      addTable(result.data);
+    }
   });
 }
 
@@ -212,10 +212,10 @@ const addTable = (items) => {
       date.setDate(date.getDate() - 7);
       break;
     case 'month':
-      date.setDate(date.getDate() - 30 );
+      date.setDate(date.getDate() - 30);
       break;
     case 'three-month':
-      date.setDate(date.getDate() - 90 );
+      date.setDate(date.getDate() - 90);
       break;
     case 'all':
       date = new Date('1970-01-01');
@@ -224,7 +224,7 @@ const addTable = (items) => {
 
   items.forEach(item => {
     if (new Date(item.date) >= date) {
-      itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;  
+      itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;
     }
   });
   document.getElementById('table-body').innerHTML = itemToAppend;
@@ -276,13 +276,37 @@ const getContent = () => {
   $.get('/api/Activity', (response) => {
     if (response.statusCode === 200) {
       const activities = response.data;
-      activities
-        .filter(activity => activity.email === user_email)
-        .forEach(addContent);
+      const storedContent = activities.filter(activity => activity.email === user_email);
+      storedContent.forEach(addContent);
       sortContentByTime();
+
+      // Remove previously stored content
+      localStorage.removeItem('storedContent');
+
+      // Store new data to LocalStorage
+      localStorage.setItem('storedContent', JSON.stringify(storedContent));
+
+      // Call convertTimeToDatesAndStore with the storedContent array
+      convertTimeToDatesAndStore(storedContent);
     }
   });
 };
+
+function convertTimeToDatesAndStore(arrayName) {
+  // Convert the time in each object to a Date object
+  for (var i = 0; i < arrayName.length; i++) {
+    var timeParts = arrayName[i].time.split(':');
+    var currentDate = new Date();
+    currentDate.setHours(parseInt(timeParts[0], 10));
+    currentDate.setMinutes(parseInt(timeParts[1], 10));
+    arrayName[i].time = currentDate;
+
+    console.log('Converted time:', arrayName[i].time);
+  }
+
+  // Store the modified object array in localStorage
+  localStorage.setItem('storedContent', JSON.stringify(arrayName));
+}
 
 const updateContent = (projectId, updatedData) => {
   $.ajax({
@@ -395,6 +419,46 @@ const updateSubmit = function () {
   updateContent(projectId, updatedData);
   $('#modal2').modal('close');
 };
+
+const socket = io();
+
+function remindEventStart() {
+  // Retrieve stored content from localStorage
+  var storedContentString = localStorage.getItem('storedContent');
+  var storedContent = JSON.parse(storedContentString);
+
+  // Get the current date and time
+  var currentDate = new Date();
+
+  // Check for upcoming events
+  for (var i = 0; i < storedContent.length; i++) {
+    var eventTime = new Date(storedContent[i].time); // Convert string to Date object
+    var timeDifference = eventTime.getTime() - currentDate.getTime();// Calculate the time difference in milliseconds
+
+    // Check if the event is upcoming (within 2 minutes)
+    if (timeDifference > 0 && timeDifference <= 120000) {
+      var eventName = storedContent[i].event;
+      var eventStartTime = eventTime;
+
+      // Check if the event has already been reminded
+      if (!storedContent[i].reminded) {
+        alert('Event will start at ' + eventStartTime.getHours() + ':' + eventStartTime.getMinutes() + ' Activity ' + eventName);
+        storedContent[i].reminded = true; // Set the 'reminded' flag to true
+      }
+    } else {
+      console.log('No upcoming event:');
+
+      // Remove the event if it has already been reminded
+      if (storedContent[i].reminded) {
+        storedContent.splice(i, 1);
+        i--;
+      }
+    }
+  }
+  localStorage.setItem('storedContent', JSON.stringify(storedContent));// Store the modified object array in localStorage
+}
+
+setInterval(remindEventStart, 1000); // Call remindEventStart every 1 second
 
 
 
