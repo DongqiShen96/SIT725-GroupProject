@@ -47,4 +47,14 @@ const updateProject = (projectId, updateData, callback) => {
     Activitycollection.updateOne({ _id: new ObjectId(projectId) }, { $set: updateData }, callback);
 };
 
-module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove,updateProject }
+// insert calculation history to History collection.
+function insertHistory(history, callback){
+    historyCollection.insertOne(history, callback);
+}
+
+// Query the database for the history data
+function getHistory(callback) { 
+    historyCollection.find().toArray(callback);
+}
+
+module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove,updateProject, insertHistory, getHistory}

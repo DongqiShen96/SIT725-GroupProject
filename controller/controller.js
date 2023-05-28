@@ -89,4 +89,26 @@ const updateProject = (req, res) => {
     });
 };
 
-module.exports = {createUser, loginUser,createProjects,getAllProjects,deleteProject,updateProject}
+const createHistory = (req, res) => {
+    let history = req.body;
+    model.insertHistory(history, (err, result) => {
+        if (!err) {
+            res.json({statusCode: 200, data: result, message: 'Added'});
+        } else {
+            console.error(err);
+            res.json({statusCode: 400, data: err, message: 'Failed'});
+        }
+    });
+}
+
+const getHistory = (req, res) => {
+    model.getHistory((err, result) => {
+        if (err) {
+            res.json({statusCode: 400, message:err})
+        } else {
+            res.json({statusCode: 200, data: result, message:"Success"});
+        }
+    });
+}
+
+module.exports = {createUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory}
