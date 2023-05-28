@@ -12,5 +12,8 @@ client.connect((err) => {
     process.exit(1);
   }
 });
+// Real-time Collection updates
+const getUserCollection = () => userCollection;
+const getPetCollection = () => petCollection;
 
 module.exports = client;
