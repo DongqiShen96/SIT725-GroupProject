@@ -289,8 +289,15 @@ $(document).ready(function () {
             var Users = result.data[i];
           }
         }
-
+        document.querySelector(
+          "#username"
+        ).innerText = `Name: ${Users.username}`;
+        document.querySelector(
+          "#birthday"
+        ).innerText = `Birthday: ${Users.birthday}`;
+        document.querySelector("#gender").innerText = `Gender: ${Users.gender}`;
         document.querySelector("#email").innerText = `Email: ${Users.email}`;
+        document.querySelector("#phone").innerText = `Phone: ${Users.phone}`;
 
       }
     },
@@ -310,6 +317,18 @@ $(document).ready(function () {
             var Pets = result.data[i];
           }
         }
+        document.querySelector("#pet-name").innerText = `Name: ${Pets.petName}`;
+        document.querySelector("#pet-type").innerText = `Type: ${Pets.petType}`;
+        document.querySelector(
+          "#pet-breed"
+        ).innerText = `Breed: ${Pets.petBreed}`;
+        document.querySelector("#pet-age").innerText = `Age: ${Pets.petAge}`;
+        document.querySelector(
+          "#pet-gender"
+        ).innerText = `Gender: ${Pets.petGender}`;
+        document.querySelector(
+          "#pet-weight"
+        ).innerText = `Weight: ${Pets.petWeight}`;
       }
     },
   });

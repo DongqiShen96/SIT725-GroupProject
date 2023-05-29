@@ -12,6 +12,15 @@ router.post("/api/Pets", (req, res) => {
   controller.storePetInfo(req, res);
 });
 
+// Obtain user and pet information
+router.get("/api/Users", (req, res) => {
+  controller.getUserInfo(req, res);
+});
+
+router.get("/api/Pets", (req, res) => {
+  controller.getPetInfo(req, res);
+});
+
 router.post("/api/user", (req, res) => {
   controller.createUser(req, res);
 });
