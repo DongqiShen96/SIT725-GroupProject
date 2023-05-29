@@ -76,6 +76,28 @@ const storePetInfo = (req, res) => {
   });
 };
 
+// Get of user information
+const getUserInfo = (req, res) => {
+  model.findUsers((err, result) => {
+    if (err) {
+      res.json({ statusCode: 400, message: err });
+    } else {
+      res.json({ statusCode: 200, data: result, message: "Successful" });
+    }
+  });
+};
+
+// Get of pet information
+const getPetInfo = (req, res) => {
+  model.findPets((err, result) => {
+    if (err) {
+      res.json({ statusCode: 400, message: err });
+    } else {
+      res.json({ statusCode: 200, data: result, message: "Successful" });
+    }
+  });
+};
+
 const createUser = (req, res) => {
   let user = req.body;
   let salt = bcrypt.genSaltSync(10);
@@ -214,4 +236,6 @@ module.exports = {
   getHistory,
   storeUserInfo,
   storePetInfo,
+  getUserInfo,
+  getPetInfo,
 };
