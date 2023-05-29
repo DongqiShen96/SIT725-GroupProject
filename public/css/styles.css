@@ -2,7 +2,9 @@
 body {
   margin: 0;
   padding-top: 100px;
-  font-family: 'Roboto', Arial, sans-serif;
+  font-family: "Roboto", Arial, sans-serif;
+
+
   background-color: #efd095;
 }
 
@@ -170,7 +172,8 @@ button:hover {
   max-height: 80%;
 }
 
-.other-content{
+
+.other-content {
   background: rgba(255, 255, 255, 0.8);
   width: 80%;
   margin-left: 200px;
@@ -325,7 +328,7 @@ tr:hover {
 
 #modal1 {
   background-color: #ffffff;
-  border-radius: 5pxrgb(255, 255, 255);
+  border-radius: 5pxrgb (255, 255, 255);
   padding: 20px;
 }
 
@@ -340,6 +343,35 @@ tr:hover {
 
 #modal1 .modal-footer a {
   margin-right: 10px;
+}
+
+#modal1 .btn {
+  background-color: #17b11c;
+  color: #ffffff;
+}
+
+#modal1 .btn:hover {
+  background-color: #123f14;
+}
+
+#modal1 label {
+  font-weight: bold;
+}
+
+#modal1 input[type="time"],
+#modal1 input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#modal1 input[type="time"]:focus,
+#modal1 input[type="text"]:focus {
+  outline: none;
+  border-color: #4caf50;
+
 }
 
 #modal1 .btn {
