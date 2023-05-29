@@ -143,9 +143,13 @@ const calculateForm = () => {
   formData.weight = $("#weight").val();
   formData.height = $("#height").val();
 
-  console.log("Form Data Submitted: ", formData);
+  if (formData.breed && formData.name && formData.weight && formData.height) {
+    console.log("Form Data Submitted: ", formData);
+    doCalculate(formData);
+  } else {
+    alert("Form data is incomplete. Please fill in all fields.");
+  }
 
-  doCalculate(formData);
 };
 
 // calculate pet's health status and then show the result
@@ -189,15 +193,11 @@ const addHistory = (history) => {
   });
 };
 
-// dataType: 'json', specifies the expected data type of the response is JSON
-const retrieveHistory = () => {
-  $.ajax({
-    url: "/api/retrieve_history",
-    type: "POST",
-    dataType: "json",
-    success: function (result) {
-      addTable(result.data);
-    },
+const searchHistory = () => {
+  $.get('/api/History', (response) => {
+    if(response.statusCode === 200){
+      addTable(response.data);
+    }
   });
 };
 
@@ -237,7 +237,7 @@ $(document).ready(function () {
     calculateForm();
   });
   $("#requireHistory").click(() => {
-    retrieveHistory();
+    searchHistory();
   });
 });
 
