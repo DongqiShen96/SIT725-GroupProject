@@ -1,106 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furry Kit</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>User Information</title>
-  <link rel="stylesheet" href="./css/styles.css" />
-</head>
+    <!-- Custom Style Sheet-->
+    <link rel="stylesheet" href="css/styles.css" />
 
-<body class="body">
-  <div class="header">
-    <div class="logo"><a href="main.html"><img src="images/logo.png" alt="Logo"></a></div>
-    <div class="header-title">Pet Management</div>
-    <div class="about-us"><a href="About-us.html">About Us</a></div>
-  </div>
-  <h1 class="user-info-h1">User Information</h1>
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet" />
+  </head>
 
-  <!-- Personal information -->
-  <div class="user-info-section personal-info">
-    <div class="user-info-form">
-      <form>
-        <h2>Personal Information</h2>
-        <!-- <div class="grid-container"> -->
-        <label for="first-name">Your Name:</label>
-        <input type="text" id="first-name" name="first-name" required />
-        <br />
-        <label for="birthday">Birthday:</label>
-        <input type="date" id="birthday" name="birthday" required />
-        <br />
-        <label for="gender">Gender:</label>
-        <select id="gender" name="gender" required>
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-          <option value="other">Other</option>
-        </select>
-        <br />
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required />
-        <br />
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required />
-        <br />
-        <label for="photo">Photo:</label>
-        <input type="file" id="photo" name="photo" accept="image/*" />
-        <!-- </div> -->
-      </form>
+  <body class="body">
+    <div class="header">
+      <div class="logo">
+        <a href="main.html"><img src="images/logo.png" alt="Logo" /></a>
+      </div>
+      <div class="header-title">Furry Kit</div>
+      <div class="about-us"><a href="About-us.html">About Us</a></div>
     </div>
-    <div class="user-info-image">
-      <img class="user-info-img" id="photo-preview" src="Logo.jpg" alt="photo Preview" />
+    <div class="nav">
+      <a href="main.html"
+        ><img src="./images/schedule.png" alt="Navigation Image 1"
+      /></a>
+      <a href="Health-track.html"
+        ><img src="./images/health track.png" alt="Navigation Image 2"
+      /></a>
+      <a href="user-information.html" class="user-settings">User</a>
     </div>
-  </div>
 
-  <!-- save -->
-  <button class="user-info-submit-btn">Submit/Save</button>
+    <!-- User Information -->
+    <div class="main-content">
+      <div class="user-info">
+        <h2>User Information</h2>
+        <div class="user-info-details">
+          <p id="username">Name:</p>
+          <p id="birthday">Birthday:</p>
+          <p id="gender">Gender:</p>
+          <p id="email">Email:</p>
+          <p id="phone">Phone Number:</p>
+        </div>
+        <button id="user-edit-btn">Edit</button>
+      </div>
+    </div>
 
-  <!-- Pet information -->
-  <div class="user-info-section pet-info">
-    <div class="user-info-form">
-      <form>
+    <!-- Pet Information -->
+    <div class="main-content">
+      <div class="user-info">
         <h2>Pet Information</h2>
-        <label class="user-info-label" for="pet-name">Pet Name:</label>
-        <input type="text" id="pet-name" name="pet-name" required />
-        <br />
-        <label class="user-info-label" for="pet-type">Pet Type:</label>
-        <select id="pet-type" name="pet-type" required>
-          <option value="">Select Pet Type</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-        </select>
-        <br />
-        <label class="user-info-label" for="pet-breed">Pet Breed:</label>
-        <select id="pet-breed" name="pet-breed" required>
-          <option value="">Select Pet Breed</option>
-          <option value="dog">Dog</option>
-          <option value="cat">Cat</option>
-        </select>
-        <br />
-        <label class="user-info-label" for="pet-age">Age:</label>
-        <input type="number" id="pet-age" name="pet-age" required />
-        <br />
-        <label class="user-info-label" for="pet-gender">Gender:</label>
-        <select id="pet-gender" name="pet-gender" required>
-          <option value="">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-        <br />
-        <label class="user-info-label" for="pet-weight">Weight:</label>
-        <input type="number" id="pet-weight" name="pet-weight" required />
-        <br />
-        <label class="user-info-label" for="pet-photo">Pet Photo:</label>
-        <input type="file" id="pet-photo" name="pet-photo" accept="image/*" />
-      </form>
+        <div class="user-info-details">
+          <p id="pet-name">Name:</p>
+          <p id="pet-type">Type:</p>
+          <p id="pet-breed">Breed:</p>
+          <p id="pet-age">Age:</p>
+          <p id="pet-gender">Gender:</p>
+          <p id="pet-weight">Weight:</p>
+        </div>
+        <button id="pet-edit-btn">Edit</button>
+      </div>
     </div>
-    <div class="user-info-image">
-      <img id="pet-photo-preview" src="Logo.jpg" alt="Pet Photo Preview" />
+
+    <!-- The User Edit Modal -->
+    <div id="userModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- User information form -->
+        <form id="user-form">
+          <label for="username">Your Name:</label>
+          <input type="text" id="username" name="username" required />
+          <br />
+          <label for="birthday">Birthday:</label>
+          <input type="date" id="birthday" name="birthday" required />
+          <br />
+          <label for="gender">Gender:</label>
+          <select id="gender" name="gender">
+            <!-- <option value="">Select Gender</option> -->
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+          <br />
+          <!-- <label for="email">Email:</label>
+          <input type="email" id="email" name="email" />
+          <br /> -->
+          <label for="phone">Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required />
+          <br />
+          <!-- save -->
+          <button class="user-info-submit-btn" id="user-submit-btn">
+            Submit/Save
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- save -->
-  <button class="user-info-submit-btn">Submit/Save</button>
-</body>
+    <!-- The Pet Edit Modal -->
+    <div id="petModal" class="modal">
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <!-- Pet information form -->
+        <form id="pet-form">
+          <label class="user-info-label" for="pet-name">Pet Name:</label>
+          <input type="text" id="pet-name" name="pet-name" required />
+          <br />
+          <label class="user-info-label" for="pet-type">Pet Type:</label>
+          <select id="pet-type" name="pet-type">
+            <!-- <option value="">Select Pet Type</option> -->
+            <option value="dog">Dog</option>
+            <option value="cat">Cat</option>
+          </select>
+          <br />
+          <label class="user-info-label" for="pet-breed">Pet Breed:</label>
+          <select id="pet-breed" name="pet-breed">
+            <option value="GoldenRetriever">Golden Retriever</option>
+            <option value="GermanShepherd">German Shepherd</option>
+            <option value="FrenchBulldog">French Bulldog</option>
+            <option value="LabradorRetriever">Labrador Retriever</option>
+            <option value="Poodle">Poodle</option>
+            <option value="British Shorthair">British Shorthair</option>
+            <option value="Persian">Persian</option>
+            <option value="Sphynx">Sphynx</option>
+            <option value="Bengal">Bengal</option>
+            <option value="Maine Coon">Maine Coon</option>
+          </select>
+          <br />
+          <label class="user-info-label" for="pet-age">Age:</label>
+          <input type="number" id="pet-age" name="pet-age" required />
+          <br />
+          <label class="user-info-label" for="pet-gender">Gender:</label>
+          <select id="pet-gender" name="pet-gender">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <br />
+          <label class="user-info-label" for="pet-weight">Weight:</label>
+          <input type="number" id="pet-weight" name="pet-weight" required />
+          <br />
+          <!-- save -->
+          <button class="user-info-submit-btn" id="pet-submit-btn">
+            Submit/Save
+          </button>
+        </form>
+      </div>
+    </div>
 
+    <!-- Compiled and minified JavaScript -->
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
