@@ -91,8 +91,10 @@ function insertHistory(history, callback) {
 }
 
 // Query the database for the history data
-function retrieveHistory(callback) {
-  historyCollection.find().toArray(callback);
+function retrieveHistory(userEmail, callback) {
+  historyCollection.find({
+    email: userEmail
+  }).toArray(callback);
 }
 
 module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, retrieveHistory, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };

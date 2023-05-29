@@ -194,7 +194,10 @@ const addHistory = (history) => {
 };
 
 const searchHistory = () => {
-  $.get('/api/History', (response) => {
+  const userEmail = localStorage.getItem("user_email"); 
+
+  const url = `/api/History?email=${encodeURIComponent(userEmail)}`;
+  $.get(url, (response) => {
     if(response.statusCode === 200){
       addTable(response.data);
     }
@@ -222,7 +225,7 @@ const addTable = (items) => {
   }
 
   items.forEach(item => {
-    if (new Date(item.date) >= date) {
+    if (new Date(item.date) >= date) { // && item.email == localStorage.getItem("user_email")
       itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;
     }
   });

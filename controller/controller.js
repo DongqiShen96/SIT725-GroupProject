@@ -188,7 +188,8 @@ const createHistory = (req, res) => {
 };
 
 const getHistory = (req, res) => {
-  model.retrieveHistory((err, result) => {
+  const userEmail = req.query.email;
+  model.retrieveHistory(userEmail, (err, result) => {
     if (err) {
       res.json({ statusCode: 400, message: err });
     } else {
