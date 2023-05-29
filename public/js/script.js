@@ -465,7 +465,7 @@ const getContent = () => {
   });
 };
 
-function convertTimeToDatesAndStore(arrayName) {
+const convertTimeToDatesAndStore = (arrayName) => {
   // Convert the time in each object to a Date object
   for (var i = 0; i < arrayName.length; i++) {
     var timeParts = arrayName[i].time.split(":");
@@ -615,14 +615,7 @@ function remindEventStart() {
 
       // Check if the event has already been reminded
       if (!storedContent[i].reminded) {
-        alert(
-          "Event will start at " +
-            eventStartTime.getHours() +
-            ":" +
-            eventStartTime.getMinutes() +
-            " Activity " +
-            eventName
-        );
+        alert("Event will start at " + eventStartTime.getHours() + ":" + eventStartTime.getMinutes() + " Activity " + eventName);
         storedContent[i].reminded = true; // Set the 'reminded' flag to true
       }
     } else {
