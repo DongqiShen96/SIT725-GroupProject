@@ -55,5 +55,10 @@ router.get("/api/History", (req, res) => {
   controller.getHistory(req, res);
 });
 
+// Define an API endpoint to retrieve the standard weight and height data
+router.get("/api/Standard", (req, res) => {
+    controller.getStandard(req, res);
+});
+
 module.exports = router;
 

@@ -175,6 +175,7 @@ const updateProject = (req, res) => {
   });
 };
 
+// insert history to database
 const createHistory = (req, res) => {
   let history = req.body;
   model.insertHistory(history, (err, result) => {
@@ -187,6 +188,7 @@ const createHistory = (req, res) => {
   });
 };
 
+// get different users' calculation history
 const getHistory = (req, res) => {
   const userEmail = req.query.email;
   model.retrieveHistory(userEmail, (err, result) => {
@@ -198,4 +200,16 @@ const getHistory = (req, res) => {
   });
 };
 
-module.exports = { createUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
+// get different breeds' standard weight and height
+const getStandard = (req, res) => {
+    const breed = req.query.breed;
+    model.retrieveStandard(breed, (err, result) => {
+      if (err) {
+        res.json({ statusCode: 400, message: err });
+      } else {
+        res.json({ statusCode: 200, data: result, message: "Successful get standard" });
+      }
+    });
+  };
+
+module.exports = { createUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, getStandard, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };

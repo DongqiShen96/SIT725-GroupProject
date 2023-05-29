@@ -292,6 +292,7 @@ describe("Store and Update Pet Information", function () {
 //Health Track Page functionalities testing
 let getHistoryUrl = 'http://localhost:3000/api/History';
 let postHistoryUrl = 'http://localhost:3000/api/History';
+let getStandardUrl = 'http://localhost:3000/api/Standard';
 let history = {
     name: 'TestInserting',
     breed: 'TestInserting',
@@ -355,3 +356,26 @@ describe('test insert history', function(){
         });
     });
 }); 
+
+describe('test get standard', function(){
+    it('return status code of 200', function(done){
+        request(getStandardUrl, function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+
+    it('return successful get standard message', function(done){
+        request(getStandardUrl, function(error, response, body){
+            body = JSON.parse(body);
+            expect(body.message).to.contain('Successful get standard');
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+});
