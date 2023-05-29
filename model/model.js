@@ -4,9 +4,6 @@ const ObjectId = require("mongodb").ObjectId;
 //GroupProject is the database's name, History is the collection's name.
 let historyCollection = client.db("GroupProject").collection("History");
 let Activitycollection = client.db("GroupProject").collection("Activity");
-let activitySheetCollection = client
-  .db("GroupProject")
-  .collection("ActivitySheet");
 let petsCollection = client.db("GroupProject").collection("Pets");
 let usersCollection = client.db("GroupProject").collection("Users");
 
@@ -98,22 +95,4 @@ function getHistory(callback) {
   historyCollection.find().toArray(callback);
 }
 
-module.exports = {
-  createUser,
-  checkUser,
-  getUser,
-  insertProjects,
-  getProjects,
-  remove,
-  updateProject,
-  insertHistory,
-  getHistory,
-  insertOneUser,
-  insertOnePet,
-  updateUserByEmail,
-  updatePetByEmail,
-  findUsers,
-  findPets,
-  findUserByEmail,
-  findPetByEmail,
-};
+module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, getHistory, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };

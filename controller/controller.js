@@ -225,17 +225,4 @@ const getHistory = (req, res) => {
   });
 };
 
-module.exports = {
-  createUser,
-  loginUser,
-  createProjects,
-  getAllProjects,
-  deleteProject,
-  updateProject,
-  createHistory,
-  getHistory,
-  storeUserInfo,
-  storePetInfo,
-  getUserInfo,
-  getPetInfo,
-};
+module.exports = {createUser,loginUser,createProjects,getAllProjects,deleteProject,updateProject,createHistory,getHistory,storeUserInfo,storePetInfo,getUserInfo,getPetInfo};
