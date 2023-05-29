@@ -92,49 +92,6 @@ $(document).ready(function () {
 /*
 Tim's work
 */
-const breedData = {
-  GoldenRetriever: {
-    weight: { min: 25, max: 36 },
-    height: { min: 51, max: 61 },
-  },
-  GermanShepherd: {
-    weight: { min: 22, max: 40 },
-    height: { min: 55, max: 65 },
-  },
-  FrenchBulldog: {
-    weight: { min: 8, max: 14 },
-    height: { min: 28, max: 33 },
-  },
-  LabradorRetriever: {
-    weight: { min: 29, max: 36 },
-    height: { min: 55, max: 62 },
-  },
-  Poodle: {
-    weight: { min: 4, max: 8 },
-    height: { min: 28, max: 38 },
-  },
-  BritishShorthair: {
-    weight: { min: 4, max: 7 },
-    height: { min: 30, max: 33 },
-  },
-  Persian: {
-    weight: { min: 3, max: 7 },
-    height: { min: 25, max: 30 },
-  },
-  Sphynx: {
-    weight: { min: 3, max: 5 },
-    height: { min: 20, max: 25 },
-  },
-  Bengal: {
-    weight: { min: 4, max: 7 },
-    height: { min: 25, max: 36 },
-  },
-  MaineCoon: {
-    weight: { min: 5, max: 11 },
-    height: { min: 25, max: 41 },
-  },
-};
-
 // when the 'calculate' bottom clicked, get form data from web and do calculate
 const calculateForm = () => {
   let formData = {};
@@ -149,27 +106,35 @@ const calculateForm = () => {
   } else {
     alert("Form data is incomplete. Please fill in all fields.");
   }
-
 };
 
-// calculate pet's health status and then show the result
+// get standard weight and height from database and calculate pet's health status and then show the result
 const doCalculate = (pet) => {
-  let weightStatus, heightStatus, html;
+  let weightMin, weightMax, heightMin, heightMax, weightStatus, heightStatus, html;
 
-  const weightData = breedData[pet.breed].weight;
-  const heightData = breedData[pet.breed].height;
+  const breed = pet.breed; 
+  const url = `/api/Standard?email=${encodeURIComponent(breed)}`;
 
-  if (parseInt(pet.weight) < weightData.min) {
+  $.get(url, (response) => {
+    if(response.statusCode === 200){
+      weightMin = response.data.weightMin;
+      weightMax = response.data.weightMax;
+      heightMin = response.data.heightMin;
+      heightMax = response.data.heightMax;
+    }
+  });
+
+  if (parseInt(pet.weight) < weightMin) {
     weightStatus = `${pet.name}'s weight is lower than standard, `;
-  } else if (parseInt(pet.weight) > weightData.max) {
+  } else if (parseInt(pet.weight) > weightMax) {
     weightStatus = `${pet.name} is overweight, `;
   } else {
     weightStatus = `${pet.name}'s weight is normal, `;
   }
 
-  if (parseInt(pet.height) < heightData.min) {
+  if (parseInt(pet.height) < heightMin) {
     heightStatus = `and ${pet.name}'s height is  lower than standard.`;
-  } else if (parseInt(pet.weight) > heightData.max) {
+  } else if (parseInt(pet.weight) > heightMax) {
     heightStatus = `and ${pet.name}'s height is  higher than standard.`;
   } else {
     heightStatus = `and ${pet.name}'s height is normal.`;
@@ -184,7 +149,7 @@ const doCalculate = (pet) => {
   addHistory(pet);
 };
 
-//uses jQuery's ajax function to send an HTTP POST request to the api/add_history URL endpoint.
+//uses jQuery's ajax function to send an HTTP POST request to the api/History URL endpoint.
 const addHistory = (history) => {
   $.ajax({
     url: "api/History",
@@ -193,14 +158,19 @@ const addHistory = (history) => {
   });
 };
 
+// get history who has the same user email
 const searchHistory = () => {
-  $.get('/api/History', (response) => {
+  const userEmail = localStorage.getItem("user_email"); 
+  const url = `/api/History?email=${encodeURIComponent(userEmail)}`;
+
+  $.get(url, (response) => {
     if(response.statusCode === 200){
       addTable(response.data);
     }
   });
 };
 
+// Adds history who has the corresponding date to the table
 const addTable = (items) => {
   let itemToAppend = "";
   let date = new Date();
