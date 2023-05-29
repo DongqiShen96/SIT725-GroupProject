@@ -143,9 +143,13 @@ const calculateForm = () => {
   formData.weight = $("#weight").val();
   formData.height = $("#height").val();
 
-  console.log("Form Data Submitted: ", formData);
+  if (formData.breed && formData.name && formData.weight && formData.height) {
+    console.log("Form Data Submitted: ", formData);
+    doCalculate(formData);
+  } else {
+    alert("Form data is incomplete. Please fill in all fields.");
+  }
 
-  doCalculate(formData);
 };
 
 // calculate pet's health status and then show the result
@@ -173,8 +177,8 @@ const doCalculate = (pet) => {
 
   pet.date = new Date().toLocaleDateString("en-US"); //set the formate of date (5/16/2023);
   pet.status = weightStatus + heightStatus;
-
-  html = "<h3>" + pet.status + "</h3>";
+  pet.email = localStorage.getItem("user_email");
+  html = "<h4>" + pet.status + "</h4>";
   $("#result").append(html);
 
   addHistory(pet);
@@ -183,21 +187,17 @@ const doCalculate = (pet) => {
 //uses jQuery's ajax function to send an HTTP POST request to the api/add_history URL endpoint.
 const addHistory = (history) => {
   $.ajax({
-    url: "api/add_history",
+    url: "api/History",
     data: history,
     type: "POST",
   });
 };
 
-// dataType: 'json', specifies the expected data type of the response is JSON
-const retrieveHistory = () => {
-  $.ajax({
-    url: "/api/retrieve_history",
-    type: "POST",
-    dataType: "json",
-    success: function (result) {
-      addTable(result.data);
-    },
+const searchHistory = () => {
+  $.get('/api/History', (response) => {
+    if(response.statusCode === 200){
+      addTable(response.data);
+    }
   });
 };
 
@@ -221,13 +221,25 @@ const addTable = (items) => {
       break;
   }
 
-  items.forEach((item) => {
+  items.forEach(item => {
     if (new Date(item.date) >= date) {
       itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;
     }
   });
   document.getElementById("table-body").innerHTML = itemToAppend;
 };
+
+// Get the <span> element that closes the modal
+$(".close").on("click", function () {
+  hideModal("myModal");
+});
+
+// When the user clicks the button, open the modal
+$("#user-calculate-btn").on("click", function () {
+  $("select").formSelect();
+  displayModal("myModal");
+  updateUserInfo("myModal");
+});
 
 $(document).ready(function () {
   $(".materialboxed").materialbox();
@@ -237,7 +249,7 @@ $(document).ready(function () {
     calculateForm();
   });
   $("#requireHistory").click(() => {
-    retrieveHistory();
+    searchHistory();
   });
 });
 

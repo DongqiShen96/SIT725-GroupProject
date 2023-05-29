@@ -182,6 +182,21 @@ button:hover {
   flex-direction: column;
 }
 
+#user-calculate-btn {
+  margin: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#user-calculate-btn:hover {
+  background-color: #00752f;
+}
+
 .calculate_btn {
   margin: 20px;
   background-color: #28a745;
@@ -198,7 +213,7 @@ button:hover {
 }
 
 .calculate_btn:hover {
-  background-color: #218838;
+  background-color: #00752f;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -218,9 +233,16 @@ button:hover {
 }
 
 .search_btn:hover {
-  background-color: #218838;
+  background-color: #00752f;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
+
+.table-container {
+  height: auto;
+  max-height: 500px;
+  overflow: scroll;
+}
+
 
 table {
   border-collapse: collapse;

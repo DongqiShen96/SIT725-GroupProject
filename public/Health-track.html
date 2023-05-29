@@ -32,39 +32,70 @@
         Calculate pet's healthy status
       </h2>
       <p><i>Note: Health calculations for adult pets only</i></p>
-      <form>
-        <p>Name</p>
-        <input id="name" type="text">
-        <p>Breed</p>
-        <select name="breed" id="breed">
-          <optgroup label="Dog">
-            <option value="GoldenRetriever">Golden Retriever</option>
-            <option value="GermanShepherd">German Shepherd</option>
-            <option value="FrenchBulldog">French Bulldog</option>
-            <option value="LabradorRetriever">Labrador Retriever</option>
-            <option value="Poodle">Poodle</option>
-          </optgroup>
-          <optgroup label="Cat">
-            <option value="British Shorthair">British Shorthair</option>
-            <option value="Persian">Persian</option>
-            <option value="Sphynx">Sphynx</option>
-            <option value="Bengal">Bengal</option>
-            <option value="Maine Coon">Maine Coon</option>
-          </optgroup>
-        </select>
-        <p>Weight (kg)</p>
-        <input id="weight" type="number">
-        <p>Height (cm)</p>
-        <input id="height" type="number"><br>
-        <button class="calculate_btn" id="calculate" type="button">Calculate</button>
-      </form>
-      <div id="result">
+      <button id="user-calculate-btn">Calculation</button>
 
+      <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <!-- User information form -->
+          <form>
+            <label for="name">Pet Name:</label>
+            <input type="text" id="name" name="name">
+            <br />
+            <label for="breed">Breed:</label>
+            <select name="breed" id="breed">
+              <optgroup label="Dog">
+                <option value="GoldenRetriever">Golden Retriever</option>
+                <option value="GermanShepherd">German Shepherd</option>
+                <option value="FrenchBulldog">French Bulldog</option>
+                <option value="LabradorRetriever">Labrador Retriever</option>
+                <option value="Poodle">Poodle</option>
+              </optgroup>
+              <optgroup label="Cat">
+                <option value="British Shorthair">British Shorthair</option>
+                <option value="Persian">Persian</option>
+                <option value="Sphynx">Sphynx</option>
+                <option value="Bengal">Bengal</option>
+                <option value="Maine Coon">Maine Coon</option>
+              </optgroup>
+            </select>
+            <br>
+            <label for="weight">Weight (kg):</label>
+            <input type="number" id="weight" name="weight">
+            <br>
+            <label for="height">Height (cm):</label>
+            <input type="number" id="height" name="height">
+            <br>
+
+            <button class="calculate_btn" id="calculate" type="button">Do Calculate</button>
+            <div id="result">
+
+            </div>
+          </form>
+        </div>
       </div>
     </div>
 
     <div class="other-content">
-      <h2>History</h2>
+      <h2>Calculation History</h2>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Pet Name</th>
+              <th>Breed</th>
+              <th>Weight (kg)</th>
+              <th>Height (cm)</th>
+              <th>Health Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+          </tbody>
+        </table>
+      </div>
+      <br>
       <form>
         <select id="period" name="period">
           <option value="week">One week</option>
@@ -74,20 +105,6 @@
         </select>
         <button class="search_btn" id="requireHistory" type="button">Search</button>
       </form>
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Breed</th>
-            <th>Weight (kg)</th>
-            <th>Height (cm)</th>
-            <th>Health Status</th>
-            <th>Date</th>
-          </tr>
-        </thead>
-        <tbody id="table-body">
-        </tbody>
-      </table>
 
       <h2>
         Other helpful information

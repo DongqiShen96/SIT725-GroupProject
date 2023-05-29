@@ -288,3 +288,70 @@ describe("Store and Update Pet Information", function () {
   });
 });
 
+//Tim
+//Health Track Page functionalities testing
+let getHistoryUrl = 'http://localhost:3000/api/History';
+let postHistoryUrl = 'http://localhost:3000/api/History';
+let history = {
+    name: 'TestInserting',
+    breed: 'TestInserting',
+    height: 'TestInserting',
+    weight: 'TestInserting',
+    status: 'TestInserting',
+    date: '5/29/2023',
+    email: 'TestInserting'
+};
+
+describe('test get calculation history', function(){
+    it('return status code of 200', function(done){
+        request(getHistoryUrl, function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+
+    it('return success message', function(done){
+        request(getHistoryUrl, function(error, response, body){
+            body = JSON.parse(body);
+            expect(body.message).to.contain('Success');
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+
+    it('return an array', function(done){
+        request(getHistoryUrl, function(error, response, body){
+            body = JSON.parse(body);
+            expect(body.data).to.be.a('array');
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+});
+
+describe('test insert history', function(){
+    it('return status code of 200', function(done){
+        request(postHistoryUrl, function(error, response, body){
+            expect(response.statusCode).to.equal(200);
+            if (error) {
+                console.log(error);
+            }
+            done();
+        });
+    });
+    
+    it('insert history to database', function(done){
+        request.post({url:postHistoryUrl, form:history}, function(error, response, body){
+            body = JSON.parse(body);
+            expect(body.message).to.contain('Added');
+            done();
+        });
+    });
+}); 
