@@ -14,11 +14,7 @@ const storeUserInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully updated",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully updated" });
         }
       });
     } else {
@@ -27,11 +23,7 @@ const storeUserInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully added",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully added" });
         }
       });
     }
@@ -52,11 +44,7 @@ const storePetInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully updated",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully updated", });
         }
       });
     } else {
@@ -65,11 +53,7 @@ const storePetInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully added",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully added" });
         }
       });
     }
@@ -151,11 +135,7 @@ const createProjects = (req, res) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "project successfully added",
-      });
+      res.json({ statusCode: 200, data: result, message: "project successfully added" });
     }
   });
 };
@@ -165,7 +145,7 @@ const getAllProjects = (req, res) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({ statusCode: 200, data: result, message: "Success" });
+      res.json({ statusCode: 200, data: result, message: "get all project Successfully" });
     }
   });
 };
@@ -176,11 +156,7 @@ const deleteProject = (req, res) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully removed",
-      });
+      res.json({ statusCode: 200, data: result, message: "Successfully removed" });
     }
   });
 };
@@ -194,11 +170,7 @@ const updateProject = (req, res) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully updated",
-      });
+      res.json({ statusCode: 200, data: result, message: "Successfully updated" });
     }
   });
 };
@@ -225,4 +197,4 @@ const getHistory = (req, res) => {
   });
 };
 
-module.exports = {createUser,loginUser,createProjects,getAllProjects,deleteProject,updateProject,createHistory,getHistory,storeUserInfo,storePetInfo,getUserInfo,getPetInfo};
+module.exports = { createUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
