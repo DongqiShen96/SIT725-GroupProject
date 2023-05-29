@@ -1,6 +1,7 @@
 var express = require("express");
 let router = express.Router();
-let controller = require("../controller/controller");
+let controller = require('../controller/controller')
+
 
 // Storing user and pet information
 router.post("/api/Users", (req, res) => {
@@ -46,3 +47,4 @@ router.post("/api/retrieve_history", (req, res) => {
 });
 
 module.exports = router;
+

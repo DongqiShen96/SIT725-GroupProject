@@ -10,6 +10,7 @@ let activitySheetCollection = client
 let petsCollection = client.db("GroupProject").collection("Pets");
 let usersCollection = client.db("GroupProject").collection("Users");
 
+
 // Insert data
 function insertOneUser(Users, callback) {
   usersCollection.insertOne(Users, callback);

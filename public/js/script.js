@@ -7,6 +7,7 @@ const submitFormSignIn = () => {
   let pw1 = $("#password").val();
   let pw2 = $("#confirm_password").val();
 
+
   //email check
   let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
   if (!emailRegex.test(email1)) {
@@ -22,6 +23,7 @@ const submitFormSignIn = () => {
 
   formData.email = $("#email").val();
   formData.password = $("#password").val();
+
   // Print for test
   console.log("form data: ", formData);
   // Server update
@@ -42,6 +44,7 @@ const createUser = (user) => {
 
 $(document).ready(function () {
   $("#signup").click(() => {
+
     submitFormSignIn();
   });
 });
@@ -50,6 +53,7 @@ $(document).ready(function () {
 const submitLoginForm = () => {
   let formData = {};
   let email = $("#email").val();
+
 
   //email check
   let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
@@ -73,6 +77,7 @@ const loginUser = (user) => {
     type: "POST",
     success: (result) => {
       if (result.statusCode === 200) {
+
         localStorage.setItem("user_email", user.email);
         alert(result.message);
         window.location.href = "main.html"; // Redirect to another page
@@ -84,10 +89,12 @@ const loginUser = (user) => {
 };
 
 $(document).ready(function () {
+
   $("#login").click(() => {
     submitLoginForm();
   });
 });
+
 
 /*
 Tim's work
@@ -132,21 +139,26 @@ const breedData = {
   MaineCoon: {
     weight: { min: 5, max: 11 },
     height: { min: 25, max: 41 },
+
   },
 };
 
 // when the 'calculate' bottom clicked, get form data from web and do calculate
 const calculateForm = () => {
   let formData = {};
+
   formData.breed = $("#breed").val();
   formData.name = $("#name").val();
   formData.weight = $("#weight").val();
   formData.height = $("#height").val();
 
+
   console.log("Form Data Submitted: ", formData);
 
   doCalculate(formData);
+
 };
+
 
 // calculate pet's health status and then show the result
 const doCalculate = (pet) => {
@@ -226,6 +238,7 @@ const addTable = (items) => {
       itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;
     }
   });
+  
   document.getElementById("table-body").innerHTML = itemToAppend;
 };
 
@@ -278,10 +291,12 @@ $(document).ready(function () {
         }
 
         document.querySelector("#email").innerText = `Email: ${Users.email}`;
+
       }
     },
     error: (error) => console.log(error),
   });
+};
 
   //Positioning Pet Form
   $.ajax({
