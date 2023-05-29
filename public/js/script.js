@@ -177,8 +177,8 @@ const doCalculate = (pet) => {
 
   pet.date = new Date().toLocaleDateString("en-US"); //set the formate of date (5/16/2023);
   pet.status = weightStatus + heightStatus;
-
-  html = "<h3>" + pet.status + "</h3>";
+  pet.email = localStorage.getItem("user_email");
+  html = "<h4>" + pet.status + "</h4>";
   $("#result").append(html);
 
   addHistory(pet);
@@ -187,7 +187,7 @@ const doCalculate = (pet) => {
 //uses jQuery's ajax function to send an HTTP POST request to the api/add_history URL endpoint.
 const addHistory = (history) => {
   $.ajax({
-    url: "api/add_history",
+    url: "api/History",
     data: history,
     type: "POST",
   });
@@ -221,13 +221,25 @@ const addTable = (items) => {
       break;
   }
 
-  items.forEach((item) => {
+  items.forEach(item => {
     if (new Date(item.date) >= date) {
       itemToAppend += `<tr><td>${item.name}</td><td>${item.breed}</td><td>${item.weight}</td><td>${item.height}</td><td>${item.status}</td><td>${item.date}</td></tr>`;
     }
   });
   document.getElementById("table-body").innerHTML = itemToAppend;
 };
+
+// Get the <span> element that closes the modal
+$(".close").on("click", function () {
+  hideModal("myModal");
+});
+
+// When the user clicks the button, open the modal
+$("#user-calculate-btn").on("click", function () {
+  $("select").formSelect();
+  displayModal("myModal");
+  updateUserInfo("myModal");
+});
 
 $(document).ready(function () {
   $(".materialboxed").materialbox();
