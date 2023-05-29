@@ -283,9 +283,7 @@ $(document).ready(function () {
           "#birthday"
         ).innerText = `Birthday: ${Users.birthday}`;
         document.querySelector("#gender").innerText = `Gender: ${Users.gender}`;
-        // let tempEmail = localStorage.getItem("user_email");
         document.querySelector("#email").innerText = `Email: ${Users.email}`;
-        // document.querySelector("#email").innerText = "Email:" + tempEmail;
         document.querySelector("#phone").innerText = `Phone: ${Users.phone}`;
       }
     },
