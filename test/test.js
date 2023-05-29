@@ -58,14 +58,12 @@ describe('Update a activity test', function () {
     it('return status code of 200', function (done) {
         request({ url: url, method: 'PUT', json: { id: projectId, ...updatedData } }, function (error, response, body) {
             expect(response.statusCode).to.equal(200);
-            expect(body.message).to.be.equal('Successfully updated');
             done();
         });
     });
 
     it('return successfully updated message', function (done) {
         request({ url: url, method: 'PUT', json: { id: projectId, ...updatedData } }, function (error, response, body) {
-            expect(response.statusCode).to.equal(200);
             expect(body.message).to.be.equal('Successfully updated');
             done();
         });
