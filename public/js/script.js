@@ -394,27 +394,20 @@ function updatePetInfo(modalId) {
 }
 // Get the <span> element that closes the modal
 $(".close").on("click", function () {
-  $("#userModal").css("display", "none");
-  $("#petModal").css("display", "none");
+  hideModal("userModal");
+  hideModal("petModal");
 });
 
 // When the user clicks the button, open the modal
-var userEditBtn = document.querySelector("#user-edit-btn");
-var petEditBtn = document.querySelector("#pet-edit-btn");
 $("#user-edit-btn").on("click", function () {
   $("select").formSelect();
-  $("#userModal").css("display", "block");
-});
-$("#pet-edit-btn").on("click", function () {
-  $("select").formSelect();
-  $("#petModal").css("display", "block");
-});
-
-userEditBtn.addEventListener("click", function () {
+  displayModal("userModal");
   updateUserInfo("userModal");
 });
 
-petEditBtn.addEventListener("click", function () {
+$("#pet-edit-btn").on("click", function () {
+  $("select").formSelect();
+  displayModal("petModal");
   updatePetInfo("petModal");
 });
 
