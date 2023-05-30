@@ -443,7 +443,7 @@ describe("sign-up POST request test", function() {
     }
     request.post({url: userurl, form: test_account}, function(error, response, body) {
         body = JSON.parse(body);
-        expect(body.message).to.contain('added');
+        expect(body.message).to.contain('New user added');
         done();
     });
   });
@@ -452,12 +452,12 @@ describe("sign-up POST request test", function() {
 //Log-in api testing 
 
 describe("POST Login test", function() {
-  it("log-in testing", function(done) {
-      request.post({url: loginurl, form: login_account}, function(error, response, body) {
-          body = JSON.parse(body);
-          expect(body.message).to.contain('Logged in');
-          done();
-      });
+  it("log-in testing", function(done) { 
+    request.post({url: loginurl, form: login_account}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('Logged in');
+      done();
+    });
   });
 });
 
