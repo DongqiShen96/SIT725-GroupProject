@@ -379,3 +379,47 @@ describe('test get standard', function(){
         });
     });
 });
+
+//Trung
+let loginurl = "http://localhost:3000/api/login";
+let test_account = {
+  email: "145@gmail.com",
+  password: "145",
+  confirm_password: "145"
+} 
+
+let test_account_duplicate = {
+  email: "145@gmail.com",
+  password: "145",
+  confirm_password: "145"
+} 
+
+//Sign-up api testing (get)
+describe("GET request test", function() {
+  it("api checking", function(done) {
+      request(userurl, function(error, response, body) {
+          expect(response.statusCode).to.equal(200);
+          done();
+      });
+  });
+
+  it("return user data from Users collection", function (done){
+      request(userurl, function(error, response, body) {
+          body = JSON.parse(body);
+          expect(body.data).to.be.a('array');
+          done();
+      });
+  });
+});
+
+//Sign-up api testing (insert new account)
+describe("POST request test", function() {
+  it("insert user after sign-up testing", function(done) {
+      request.post({url:userurl, form:test_account}, function(error, response, body) {
+          body = JSON.parse(body);
+          expect(body.message).to.contain('added');
+          done();
+      });
+  });
+});
+
