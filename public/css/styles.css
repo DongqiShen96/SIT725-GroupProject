@@ -243,7 +243,6 @@ button:hover {
   overflow: scroll;
 }
 
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -451,6 +450,21 @@ tr:hover {
 
 .close:hover,
 .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button for Health-track */
+.myModalClose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.myModalClose:hover,
+.myModalClose:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
