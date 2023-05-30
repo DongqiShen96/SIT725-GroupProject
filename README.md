@@ -2,7 +2,7 @@
 
 <img alt="LOGO" src="./public/images/preview.jpg" width="256" height="256" />
 
-# <strong>SIT725-GroupProject-Furry kit</strong>
+# <strong>SIT725-GroupProject-Furry Fit</strong>
 
 </div>
 
