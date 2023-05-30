@@ -8,9 +8,14 @@ let petsCollection = client.db("GroupProject").collection("Pets");
 let usersCollection = client.db("GroupProject").collection("Users");
 
 
-// Insert data
+// Insert user
 function insertOneUser(Users, callback) {
   usersCollection.insertOne(Users, callback);
+}
+
+//Delete user
+function deleteUser(Users, callback) {
+  usersCollection.deleteOne(Users, callback);
 }
 
 function insertOnePet(Pets, callback) {
@@ -104,4 +109,4 @@ function retrieveStandard(breed, callback) {
   }).toArray(callback);
 }
 
-module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, retrieveHistory, retrieveStandard, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };
+module.exports = { createUser,deleteUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, retrieveHistory, retrieveStandard, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };

@@ -394,6 +394,11 @@ let test_account = {
   password: hashed_pw
 } 
 
+let existed_test_account = {
+  email: "1234@gmail.com",
+  password: "pw"
+}
+
 //Testing log-in variable
 let login_account = {
   email: "145@gmail.com",
@@ -408,7 +413,7 @@ let login_account_wrongpw = {
 
 //Testing log-in variable
 let login_account_notexist = {
-  email: "145@gmail.com",
+  email: "notexisted@gmail.com",
   password: hashed_pw,
 }
 
@@ -431,11 +436,10 @@ describe("sign-up GET request test", function() {
   });
 });
 
-//Sign-up api testing (insert new account)
+//Sign-up function and api testing (insert new account)
 describe("sign-up POST request test", function() {
   //Check if the user is successfully added
-  it("insert user after sign-up testing", function(done) {
-
+  it("Insert new user after sign-up testing with new email", function(done) {
     // Valid email checking
     let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
     if (!emailRegex.test(test_account.email)) {
@@ -443,20 +447,38 @@ describe("sign-up POST request test", function() {
     }
     request.post({url: userurl, form: test_account}, function(error, response, body) {
         body = JSON.parse(body);
-        expect(body.message).to.contain('New user added');
+        expect(body.message).to.contain('added');
         done();
     });
   });
 });
 
-//Log-in api testing 
-
+//Log-in function and api testing 
 describe("POST Login test", function() {
-  it("log-in testing", function(done) { 
+  it("Success log-in testing for valid account", function(done) { 
     request.post({url: loginurl, form: login_account}, function(error, response, body) {
       body = JSON.parse(body);
       expect(body.message).to.contain('Logged in');
       done();
+    });
+  });
+  it("Detect the wrong password for existed account, deny the login", function(done) { 
+    request.post({url: loginurl, form: login_account_wrongpw}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('Password does not match');
+      done();
+    });
+  });
+  it("Detect the email that is not registered yet, deny the log-in", function(done) { 
+    request.post({url: loginurl, form: login_account_notexist}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('User does not exist');
+      done();
+    });
+  });
+  after(function(done) {
+    request.delete({url:userurl, form:test_account}, function(error, response, body) {
+        done();
     });
   });
 });

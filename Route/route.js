@@ -8,6 +8,10 @@ router.post("/api/Users", (req, res) => {
   controller.storeUserInfo(req, res);
 });
 
+router.delete("/api/Users", (req, res) => {
+  controller.deleteUser(req, res);
+});
+
 router.post("/api/Pets", (req, res) => {
   controller.storePetInfo(req, res);
 });
