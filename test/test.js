@@ -392,11 +392,6 @@ let hashed_pw = bcrypt.hashSync("145", salt);
 let test_account = {
   email: "145@gmail.com",
   password: hashed_pw
-} 
-
-let existed_test_account = {
-  email: "1234@gmail.com",
-  password: "pw"
 }
 
 //Testing log-in variable
@@ -455,6 +450,7 @@ describe("sign-up POST request test", function() {
 
 //Log-in function and api testing 
 describe("POST Login test", function() {
+  //Check if it's a success login from a valid input
   it("Success log-in testing for valid account", function(done) { 
     request.post({url: loginurl, form: login_account}, function(error, response, body) {
       body = JSON.parse(body);
@@ -462,6 +458,8 @@ describe("POST Login test", function() {
       done();
     });
   });
+  
+  //For a wrong password for any registered account, deny log-in
   it("Detect the wrong password for existed account, deny the login", function(done) { 
     request.post({url: loginurl, form: login_account_wrongpw}, function(error, response, body) {
       body = JSON.parse(body);
@@ -469,6 +467,8 @@ describe("POST Login test", function() {
       done();
     });
   });
+
+  //For a email input that not registered yet, deny log-in
   it("Detect the email that is not registered yet, deny the log-in", function(done) { 
     request.post({url: loginurl, form: login_account_notexist}, function(error, response, body) {
       body = JSON.parse(body);
@@ -476,6 +476,7 @@ describe("POST Login test", function() {
       done();
     });
   });
+  //Delete the dummy account from the database after test for successful test in the future
   after(function(done) {
     request.delete({url:userurl, form:test_account}, function(error, response, body) {
         done();

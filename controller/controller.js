@@ -110,6 +110,7 @@ const createUser = (req, res) => {
   });
 };
 
+//Delete user function
 const deleteUser = (req,res) => {
   let user = req.body;
   model.deleteUser(user, (err, result) => {

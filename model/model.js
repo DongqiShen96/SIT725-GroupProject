@@ -48,10 +48,12 @@ function findPetByEmail(email, callback) {
   petsCollection.findOne({ email: email }, callback);
 }
 
+//Create user
 const createUser = (user, callback) => {
   usersCollection.insertOne(user, callback);
 };
 
+//Search if user is existed or not by email
 const checkUser = (email, callback) => {
   usersCollection.find({ email: email }).toArray((err, result) => {
     if (err) throw err;
@@ -59,6 +61,7 @@ const checkUser = (email, callback) => {
   });
 };
 
+//Get user by email
 const getUser = (email, callback) => {
   usersCollection.find({ email: email }).toArray((err, result) => {
     if (err) {

@@ -8,6 +8,7 @@ router.post("/api/Users", (req, res) => {
   controller.storeUserInfo(req, res);
 });
 
+//Delete one user (used for testing)
 router.delete("/api/Users", (req, res) => {
   controller.deleteUser(req, res);
 });
@@ -29,6 +30,7 @@ router.post("/api/user", (req, res) => {
   controller.createUser(req, res);
 });
 
+// Define API endpoint for login
 router.post("/api/login", (req, res) => {
   controller.loginUser(req, res);
 });
