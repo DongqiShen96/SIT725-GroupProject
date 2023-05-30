@@ -68,6 +68,13 @@ npm install bcryptjs express mongodb request socket.io
 ## <strong>Running the application</strong>
 
 To start the web application, run the following command in your terminal:
+
+```
+npm start
+```
+<strong>Or start by Docker:</strong>
+
+
 ### 1. Pulling docker images:
 
 ```
