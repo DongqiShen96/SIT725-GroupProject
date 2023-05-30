@@ -388,12 +388,6 @@ let test_account = {
   confirm_password: "145"
 } 
 
-let test_account_duplicate = {
-  email: "145@gmail.com",
-  password: "145",
-  confirm_password: "145"
-} 
-
 //Sign-up api testing (get)
 describe("GET request test", function() {
   it("api checking", function(done) {
@@ -415,11 +409,24 @@ describe("GET request test", function() {
 //Sign-up api testing (insert new account)
 describe("POST request test", function() {
   it("insert user after sign-up testing", function(done) {
-      request.post({url:userurl, form:test_account}, function(error, response, body) {
-          body = JSON.parse(body);
-          expect(body.message).to.contain('added');
-          done();
-      });
+
+    // Valid email checking
+    let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(test_account.email)) {
+        throw new Error('Email is not in valid format');
+    }
+
+    //Checking only allow sign-up when password match with the "confirm password"
+    if (test_account.password !== test_account.confirm_password) {
+      throw new Error('Password and confirm password do not match');
+    }
+    request.post({url: userurl, form: test_account}, function(error, response, body) {
+        body = JSON.parse(body);
+        expect(body.message).to.contain('added');
+        done();
+    });
   });
 });
+
+
 
