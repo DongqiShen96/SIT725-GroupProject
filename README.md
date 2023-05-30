@@ -64,12 +64,25 @@ cd SIT725-GroupProject
 npm install bcryptjs express mongodb request socket.io
 ```
 
+
 ## <strong>Running the application</strong>
 
 To start the web application, run the following command in your terminal:
+### 1. Pulling docker images:
 
 ```
-npm start
+docker pull timzheng99/sit725team6groupproject:lastest
+```
+### 2. Start docker:
+
+```
+docker run -d -p 5000:3000 <image name>
+```
+
+### 3. Stop docker (When exiting):
+
+```
+docker container stop
 ```
 
 This will start the server at http://localhost:3000.
