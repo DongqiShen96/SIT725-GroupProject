@@ -449,7 +449,7 @@ describe("sign-up POST request test", function() {
 });
 
 //Log-in function and api testing 
-describe("POST Login test", function() {
+describe("POST Login test for valid login", function() {
   //Check if it's a success login from a valid input
   it("Success log-in testing for valid account", function(done) { 
     request.post({url: loginurl, form: login_account}, function(error, response, body) {
@@ -458,7 +458,10 @@ describe("POST Login test", function() {
       done();
     });
   });
-  
+});
+
+//Log-in function and api testing 
+describe("POST Login test for incorrect password", function() {
   //For a wrong password for any registered account, deny log-in
   it("Detect the wrong password for existed account, deny the login", function(done) { 
     request.post({url: loginurl, form: login_account_wrongpw}, function(error, response, body) {
@@ -467,7 +470,10 @@ describe("POST Login test", function() {
       done();
     });
   });
+});
 
+//Log-in function and api testing 
+describe("POST Login test for not registered email", function() {
   //For a email input that not registered yet, deny log-in
   it("Detect the email that is not registered yet, deny the log-in", function(done) { 
     request.post({url: loginurl, form: login_account_notexist}, function(error, response, body) {
