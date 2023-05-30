@@ -16,11 +16,11 @@ Our software will assist pet owners in managing and generating daily activity sc
 
 ## <strong>Table of Contents</strong>
 
-- [Features](#strongfeaturesstrong)
-- [Usage](#strongusagestrong)
-- [Technology Stack](#strongtechnology-stackstrong)
-- [Maintainers](#strongmaintainersstrong)
-- [License](#stronglicensestrong)
+- [Features](#features)
+- [Usage](#usage)
+- [Technology Stack](#technology-stack)
+- [Maintainers](#maintainers)
+- [License](#license)
 
 ## <strong>Features</strong>
 
