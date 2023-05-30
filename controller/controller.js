@@ -82,6 +82,7 @@ const getPetInfo = (req, res) => {
   });
 };
 
+//Create new user
 const createUser = (req, res) => {
   let user = req.body;
   let salt = bcrypt.genSaltSync(10);
@@ -109,6 +110,7 @@ const createUser = (req, res) => {
   });
 };
 
+//Log-in function
 const loginUser = (req, res) => {
   let user = req.body;
   model.getUser(user.email, (err, result) => {

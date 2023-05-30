@@ -380,23 +380,36 @@ describe('test get standard', function(){
     });
 });
 
-//Trung
+//Trung testing design
 let loginurl = "http://localhost:3000/api/login";
+
+//Testing variable of new user
 let test_account = {
   email: "145@gmail.com",
   password: "145",
   confirm_password: "145"
 } 
 
+//User password hashing
+let salt = bcrypt.genSaltSync(10);
+let hashed_pw = bcrypt.hashSync(test_account.password, salt);
+
+//Testing log-in variable
+let login_account = {
+  email: "145@gmail.com",
+  password: hashed_pw,
+}
+
 //Sign-up api testing (get)
-describe("GET request test", function() {
+describe("sign-up GET request test", function() {
+  //Check if the api works
   it("api checking", function(done) {
       request(userurl, function(error, response, body) {
           expect(response.statusCode).to.equal(200);
           done();
       });
   });
-
+  //Check if the data returned from user collection
   it("return user data from Users collection", function (done){
       request(userurl, function(error, response, body) {
           body = JSON.parse(body);
@@ -407,7 +420,8 @@ describe("GET request test", function() {
 });
 
 //Sign-up api testing (insert new account)
-describe("POST request test", function() {
+describe("sign-up POST request test", function() {
+  //Check if the user is successfully added
   it("insert user after sign-up testing", function(done) {
 
     // Valid email checking
@@ -427,6 +441,20 @@ describe("POST request test", function() {
     });
   });
 });
+
+//Log-in api testing 
+
+describe("POST Login test", function() {
+  it("log-in testing", function(done) {
+      request.post({url: loginurl, form: login_account}, function(error, response, body) {
+          body = JSON.parse(body);
+          expect(body.message).to.contain('Logged in');
+          done();
+      });
+  });
+});
+
+
 
 
 
