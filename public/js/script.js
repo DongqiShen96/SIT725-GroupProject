@@ -1,6 +1,12 @@
 let user_email;
 
-//Trung's work: Sign-up
+/*
+Trung's work
+*/
+
+//Sign-up
+
+//Sign up submit form
 const submitFormSignIn = () => {
   let formData = {};
   let email1 = $("#email").val();
@@ -14,7 +20,7 @@ const submitFormSignIn = () => {
     return;
   }
 
-  //Pw check
+  //Password check
   if (pw1 !== pw2) {
     alert("Not matched");
     return;
@@ -28,6 +34,7 @@ const submitFormSignIn = () => {
   createUser(formData);
 };
 
+//Create new user
 const createUser = (user) => {
   $.ajax({
     url: "api/user",
@@ -46,7 +53,9 @@ $(document).ready(function () {
   });
 });
 
-//Trung's work - Login
+//Login page
+
+//Submit form for login
 const submitLoginForm = () => {
   let formData = {};
   let email = $("#email").val();
@@ -66,6 +75,8 @@ const submitLoginForm = () => {
   loginUser(formData);
 };
 
+
+//Login function
 const loginUser = (user) => {
   $.ajax({
     url: "api/login",

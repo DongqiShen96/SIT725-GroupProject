@@ -1,5 +1,6 @@
 let expect = require("chai").expect;
 let request = require("request");
+var bcrypt = require("bcryptjs");
 let url = "http://localhost:3000/api/Activity";
 let userurl = "http://localhost:3000/api/Users";
 let peturl = "http://localhost:3000/api/Pets";
@@ -379,3 +380,117 @@ describe('test get standard', function(){
         });
     });
 });
+
+//Trung testing design
+let loginurl = "http://localhost:3000/api/login";
+
+//User password hashing with the password of "145"
+let salt = bcrypt.genSaltSync(10);
+let hashed_pw = bcrypt.hashSync("145", salt);
+
+//Testing variable of new user
+let test_account = {
+  email: "145@gmail.com",
+  password: hashed_pw
+}
+
+//Testing log-in variable
+let login_account = {
+  email: "145@gmail.com",
+  password: "145"
+}
+
+//Testing log-in variable
+let login_account_wrongpw = {
+  email: "145@gmail.com",
+  password: "wrongpassword",
+}
+
+//Testing log-in variable
+let login_account_notexist = {
+  email: "notexisted@gmail.com",
+  password: hashed_pw,
+}
+
+//Sign-up api testing (get)
+describe("sign-up GET request test", function() {
+  //Check if the api works
+  it("api checking", function(done) {
+      request(userurl, function(error, response, body) {
+          expect(response.statusCode).to.equal(200);
+          done();
+      });
+  });
+  //Check if the data returned from user collection
+  it("return user data from Users collection", function (done){
+      request(userurl, function(error, response, body) {
+          body = JSON.parse(body);
+          expect(body.data).to.be.a('array');
+          done();
+      });
+  });
+});
+
+//Sign-up function and api testing (insert new account)
+describe("sign-up POST request test", function() {
+  //Check if the user is successfully added
+  it("Insert new user after sign-up testing with new email", function(done) {
+    // Valid email checking
+    let emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+    if (!emailRegex.test(test_account.email)) {
+        throw new Error('Email is not in valid format');
+    }
+    request.post({url: userurl, form: test_account}, function(error, response, body) {
+        body = JSON.parse(body);
+        expect(body.message).to.contain('added');
+        done();
+    });
+  });
+});
+
+//Log-in function and api testing 
+describe("POST Login test for valid login", function() {
+  //Check if it's a success login from a valid input
+  it("Success log-in testing for valid account", function(done) { 
+    request.post({url: loginurl, form: login_account}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('Logged in');
+      done();
+    });
+  });
+});
+
+//Log-in function and api testing 
+describe("POST Login test for incorrect password", function() {
+  //For a wrong password for any registered account, deny log-in
+  it("Detect the wrong password for existed account, deny the login", function(done) { 
+    request.post({url: loginurl, form: login_account_wrongpw}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('Password does not match');
+      done();
+    });
+  });
+});
+
+//Log-in function and api testing 
+describe("POST Login test for not registered email", function() {
+  //For a email input that not registered yet, deny log-in
+  it("Detect the email that is not registered yet, deny the log-in", function(done) { 
+    request.post({url: loginurl, form: login_account_notexist}, function(error, response, body) {
+      body = JSON.parse(body);
+      expect(body.message).to.contain('User does not exist');
+      done();
+    });
+  });
+  //Delete the dummy account from the database after test for successful test in the future
+  after(function(done) {
+    request.delete({url:userurl, form:test_account}, function(error, response, body) {
+        done();
+    });
+  });
+});
+
+
+
+
+

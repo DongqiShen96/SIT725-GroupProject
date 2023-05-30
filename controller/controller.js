@@ -82,6 +82,7 @@ const getPetInfo = (req, res) => {
   });
 };
 
+//Create new user
 const createUser = (req, res) => {
   let user = req.body;
   let salt = bcrypt.genSaltSync(10);
@@ -109,6 +110,19 @@ const createUser = (req, res) => {
   });
 };
 
+//Delete user function
+const deleteUser = (req,res) => {
+  let user = req.body;
+  model.deleteUser(user, (err, result) => {
+      if (err) {
+          res.json({statusCode: 400, message: err});
+      } else {
+          res.json({statusCode: 200, data: result, message: 'User removed'});
+      }
+  });
+} 
+
+//Log-in function
 const loginUser = (req, res) => {
   let user = req.body;
   model.getUser(user.email, (err, result) => {
@@ -212,4 +226,4 @@ const getStandard = (req, res) => {
     });
   };
 
-module.exports = { createUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, getStandard, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
+module.exports = { createUser,deleteUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, getStandard, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };
