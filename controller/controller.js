@@ -143,6 +143,7 @@ const loginUser = (req, res) => {
   });
 };
 
+//create a new project
 const createProjects = (req, res) => {
   let newProject = req.body;
   model.insertProjects(newProject, (error, result) => {
@@ -154,6 +155,7 @@ const createProjects = (req, res) => {
   });
 };
 
+//get all projects from the Activitycollection
 const getAllProjects = (req, res) => {
   model.getProjects((error, result) => {
     if (error) {
@@ -164,6 +166,7 @@ const getAllProjects = (req, res) => {
   });
 };
 
+//remove a project from the Activitycollection by projectId
 const deleteProject = (req, res) => {
   let projectId = req.body.id;
   model.remove(projectId, (error, result) => {
@@ -175,10 +178,11 @@ const deleteProject = (req, res) => {
   });
 };
 
+//update a project in the Activitycollection by projectId
 const updateProject = (req, res) => {
   let projectId = req.body.id;
   let updatedData = req.body;
-  delete updatedData.id; // remove id from the update data
+  delete updatedData.id; 
 
   model.updateProject(projectId, updatedData, (error, result) => {
     if (error) {

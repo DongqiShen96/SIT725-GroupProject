@@ -406,8 +406,8 @@ tr:hover {
   font-weight: bold;
 }
 
-#modal1 input[type="time"],
-#modal1 input[type="text"] {
+#modal2 input[type="time"],
+#modal2 input[type="text"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #cccccc;
@@ -415,8 +415,8 @@ tr:hover {
   box-sizing: border-box;
 }
 
-#modal1 input[type="time"]:focus,
-#modal1 input[type="text"]:focus {
+#modal2 input[type="time"]:focus,
+#modal2 input[type="text"]:focus {
   outline: none;
   border-color: #4caf50;
 }

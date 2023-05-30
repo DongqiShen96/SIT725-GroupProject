@@ -407,11 +407,9 @@ $("#pet-edit-btn").on("click", function () {
 /*
 Ender's work
 */
-//add activity
+//create a card container for an activity item
 const createCardContainer = (item) => {
-  let cardContainer = $("<div>").addClass(
-    "col s12 center-align card-container"
-  );
+  let cardContainer = $("<div>").addClass("col s12 center-align card-container");
   let card = $("<div>").addClass("card medium");
   let cardContent = $("<div>").addClass("card-content");
   let cardRow = $("<div>").addClass("row valign-wrapper");
@@ -420,7 +418,10 @@ const createCardContainer = (item) => {
   let deleteButton = $("<button>").addClass("col s2 delete-btn").text("Delete");
   let editButton = $("<button>").addClass("col s2 edit-btn").text("Edit");
 
+  // Set data attribute to store MongoDB ID of the activity
   cardContainer.data("mongo-id", item._id);
+
+  // Append elements to build the card container
   cardRow.append(cardTime, cardEvent, deleteButton, editButton);
   cardContent.append(cardRow);
   card.append(cardContent);
@@ -429,21 +430,23 @@ const createCardContainer = (item) => {
   return cardContainer;
 };
 
+//add activity content to the dataset
 const addContentToDataset = (project) => {
   $.post("/api/Activity", project, (result) => {
     location.reload();
   });
 };
 
+//get activity content
 const getContent = () => {
   const user_email = localStorage.getItem("user_email");
   $.get("/api/Activity", (response) => {
     if (response.statusCode === 200) {
       const activities = response.data;
-      const storedContent = activities.filter(
-        (activity) => activity.email === user_email
-      );
+      const storedContent = activities.filter((activity) => activity.email === user_email);
       storedContent.forEach(addContent);
+
+      // Sort the content by time
       sortContentByTime();
 
       // Remove previously stored content
@@ -458,6 +461,7 @@ const getContent = () => {
   });
 };
 
+//convert time strings to Date objects and store the modified content
 const convertTimeToDatesAndStore = (arrayName) => {
   // Convert the time in each object to a Date object
   for (var i = 0; i < arrayName.length; i++) {
@@ -474,6 +478,7 @@ const convertTimeToDatesAndStore = (arrayName) => {
   localStorage.setItem("storedContent", JSON.stringify(arrayName));
 }
 
+//update activity content
 const updateContent = (projectId, updatedData) => {
   $.ajax({
     url: "/api/Activity",
@@ -502,6 +507,7 @@ $(document).ready(function () {
   $("#EditSubmit").click(updateSubmit);
 });
 
+//handle submit event of adding form
 const submitaddingForm = () => {
   const user_email = localStorage.getItem("user_email");
   let formData = { email: user_email };
@@ -519,11 +525,13 @@ const submitaddingForm = () => {
   $("#modal1").modal("close");
 };
 
+//add activity content to the page
 const addContent = (item) => {
   let cardContainer = createCardContainer(item);
   $("#card-section").append(cardContainer);
 };
 
+//sort activity content by time
 const sortContentByTime = () => {
   let $cardSection = $("#card-section");
   let $cards = $cardSection.children(".card-container");
@@ -538,7 +546,7 @@ const sortContentByTime = () => {
   $cardSection.append(sortedCards);
 };
 
-//delete activity
+//delete activity content
 const deleteContent = function () {
   let projectId = $(this).closest(".card-container").data("mongo-id");
 
@@ -557,7 +565,7 @@ const deleteContent = function () {
   });
 };
 
-//update activity
+//open the update form for editing activity content
 const openUpdateForm = function () {
   let projectId = $(this).closest(".card-container").data("mongo-id");
   let currentTime = $(this).closest(".row").find(".col.s4").text();
@@ -570,12 +578,10 @@ const openUpdateForm = function () {
   $("#modal2").modal("open");
 };
 
+//handle update form submission
 const updateSubmit = function () {
   let projectId = $("#modal2").data("project-id");
-  let updatedData = {
-    time: $("#modal2 #time").val(),
-    event: $("#modal2 #event").val(),
-  };
+  let updatedData = {time: $("#modal2 #time").val(),event: $("#modal2 #event").val()};
 
   if (!updatedData.time || !updatedData.event) {
     alert("Please fill out both time and event fields.");
@@ -588,8 +594,8 @@ const updateSubmit = function () {
 
 const socket = io();
 
+//remind upcoming event
 function remindEventStart() {
-  // Retrieve stored content from localStorage
   var storedContentString = localStorage.getItem("storedContent");
   var storedContent = JSON.parse(storedContentString);
 
@@ -598,8 +604,8 @@ function remindEventStart() {
 
   // Check for upcoming events
   for (var i = 0; i < storedContent.length; i++) {
-    var eventTime = new Date(storedContent[i].time); // Convert string to Date object
-    var timeDifference = eventTime.getTime() - currentDate.getTime(); // Calculate the time difference in milliseconds
+    var eventTime = new Date(storedContent[i].time); 
+    var timeDifference = eventTime.getTime() - currentDate.getTime(); 
 
     // Check if the event is upcoming (within 2 minutes)
     if (timeDifference > 0 && timeDifference <= 120000) {
@@ -609,7 +615,7 @@ function remindEventStart() {
       // Check if the event has already been reminded
       if (!storedContent[i].reminded) {
         alert("Event will start at " + eventStartTime.getHours() + ":" + eventStartTime.getMinutes() + " Activity " + eventName);
-        storedContent[i].reminded = true; // Set the 'reminded' flag to true
+        storedContent[i].reminded = true; 
       }
     } else {
       console.log("No upcoming event:");
@@ -621,7 +627,8 @@ function remindEventStart() {
       }
     }
   }
-  localStorage.setItem("storedContent", JSON.stringify(storedContent)); // Store the modified object array in localStorage
+  localStorage.setItem("storedContent", JSON.stringify(storedContent)); 
 }
 
-setInterval(remindEventStart, 1000); // Call remindEventStart every 1 second
+// Call remindEventStart every 1 second
+setInterval(remindEventStart, 1000); 
