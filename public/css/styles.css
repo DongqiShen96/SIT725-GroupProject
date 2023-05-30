@@ -182,6 +182,21 @@ button:hover {
   flex-direction: column;
 }
 
+#user-calculate-btn {
+  margin: 20px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#user-calculate-btn:hover {
+  background-color: #00752f;
+}
+
 .calculate_btn {
   margin: 20px;
   background-color: #28a745;
@@ -198,7 +213,7 @@ button:hover {
 }
 
 .calculate_btn:hover {
-  background-color: #218838;
+  background-color: #00752f;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -218,8 +233,14 @@ button:hover {
 }
 
 .search_btn:hover {
-  background-color: #218838;
+  background-color: #00752f;
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table-container {
+  height: auto;
+  max-height: 500px;
+  overflow: scroll;
 }
 
 table {
@@ -384,8 +405,8 @@ tr:hover {
   font-weight: bold;
 }
 
-#modal1 input[type="time"],
-#modal1 input[type="text"] {
+#modal2 input[type="time"],
+#modal2 input[type="text"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #cccccc;
@@ -393,8 +414,8 @@ tr:hover {
   box-sizing: border-box;
 }
 
-#modal1 input[type="time"]:focus,
-#modal1 input[type="text"]:focus {
+#modal2 input[type="time"]:focus,
+#modal2 input[type="text"]:focus {
   outline: none;
   border-color: #4caf50;
 }
@@ -429,6 +450,21 @@ tr:hover {
 
 .close:hover,
 .close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* The Close Button for Health-track */
+.myModalClose {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.myModalClose:hover,
+.myModalClose:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;

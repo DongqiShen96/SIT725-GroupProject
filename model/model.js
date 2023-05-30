@@ -8,9 +8,14 @@ let petsCollection = client.db("GroupProject").collection("Pets");
 let usersCollection = client.db("GroupProject").collection("Users");
 
 
-// Insert data
+// Insert user
 function insertOneUser(Users, callback) {
   usersCollection.insertOne(Users, callback);
+}
+
+//Delete user
+function deleteUser(Users, callback) {
+  usersCollection.deleteOne(Users, callback);
 }
 
 function insertOnePet(Pets, callback) {
@@ -43,10 +48,12 @@ function findPetByEmail(email, callback) {
   petsCollection.findOne({ email: email }, callback);
 }
 
+//Create user
 const createUser = (user, callback) => {
   usersCollection.insertOne(user, callback);
 };
 
+//Search if user is existed or not by email
 const checkUser = (email, callback) => {
   usersCollection.find({ email: email }).toArray((err, result) => {
     if (err) throw err;
@@ -54,6 +61,7 @@ const checkUser = (email, callback) => {
   });
 };
 
+//Get user by email
 const getUser = (email, callback) => {
   usersCollection.find({ email: email }).toArray((err, result) => {
     if (err) {
@@ -91,8 +99,17 @@ function insertHistory(history, callback) {
 }
 
 // Query the database for the history data
-function getHistory(callback) {
-  historyCollection.find().toArray(callback);
+function retrieveHistory(userEmail, callback) {
+  historyCollection.find({
+    email: userEmail
+  }).toArray(callback);
 }
 
-module.exports = { createUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, getHistory, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };
+// Query the database for the standard weight and height data
+function retrieveStandard(breed, callback) {
+  historyCollection.find({
+    breed: breed
+  }).toArray(callback);
+}
+
+module.exports = { createUser,deleteUser, checkUser, getUser, insertProjects, getProjects, remove, updateProject, insertHistory, retrieveHistory, retrieveStandard, insertOneUser, insertOnePet, updateUserByEmail, updatePetByEmail, findUsers, findPets, findUserByEmail, findPetByEmail };

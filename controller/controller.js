@@ -14,11 +14,7 @@ const storeUserInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully updated",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully updated" });
         }
       });
     } else {
@@ -27,11 +23,7 @@ const storeUserInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully added",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully added" });
         }
       });
     }
@@ -52,11 +44,7 @@ const storePetInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully updated",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully updated", });
         }
       });
     } else {
@@ -65,11 +53,7 @@ const storePetInfo = (req, res) => {
         if (err) {
           res.json({ statusCode: 400, message: err });
         } else {
-          res.json({
-            statusCode: 200,
-            data: result,
-            message: "Successfully added",
-          });
+          res.json({ statusCode: 200, data: result, message: "Successfully added" });
         }
       });
     }
@@ -98,6 +82,7 @@ const getPetInfo = (req, res) => {
   });
 };
 
+//Create new user
 const createUser = (req, res) => {
   let user = req.body;
   let salt = bcrypt.genSaltSync(10);
@@ -125,6 +110,19 @@ const createUser = (req, res) => {
   });
 };
 
+//Delete user function
+const deleteUser = (req,res) => {
+  let user = req.body;
+  model.deleteUser(user, (err, result) => {
+      if (err) {
+          res.json({statusCode: 400, message: err});
+      } else {
+          res.json({statusCode: 200, data: result, message: 'User removed'});
+      }
+  });
+} 
+
+//Log-in function
 const loginUser = (req, res) => {
   let user = req.body;
   model.getUser(user.email, (err, result) => {
@@ -145,64 +143,57 @@ const loginUser = (req, res) => {
   });
 };
 
+//create a new project
 const createProjects = (req, res) => {
   let newProject = req.body;
   model.insertProjects(newProject, (error, result) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "project successfully added",
-      });
+      res.json({ statusCode: 200, data: result, message: "project successfully added" });
     }
   });
 };
 
+//get all projects from the Activitycollection
 const getAllProjects = (req, res) => {
   model.getProjects((error, result) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({ statusCode: 200, data: result, message: "Success" });
+      res.json({ statusCode: 200, data: result, message: "get all project Successfully" });
     }
   });
 };
 
+//remove a project from the Activitycollection by projectId
 const deleteProject = (req, res) => {
   let projectId = req.body.id;
   model.remove(projectId, (error, result) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully removed",
-      });
+      res.json({ statusCode: 200, data: result, message: "Successfully removed" });
     }
   });
 };
 
+//update a project in the Activitycollection by projectId
 const updateProject = (req, res) => {
   let projectId = req.body.id;
   let updatedData = req.body;
-  delete updatedData.id; // remove id from the update data
+  delete updatedData.id; 
 
   model.updateProject(projectId, updatedData, (error, result) => {
     if (error) {
       res.json({ statusCode: 400, message: error });
     } else {
-      res.json({
-        statusCode: 200,
-        data: result,
-        message: "Successfully updated",
-      });
+      res.json({ statusCode: 200, data: result, message: "Successfully updated" });
     }
   });
 };
 
+// insert history to database
 const createHistory = (req, res) => {
   let history = req.body;
   model.insertHistory(history, (err, result) => {
@@ -215,8 +206,10 @@ const createHistory = (req, res) => {
   });
 };
 
+// get different users' calculation history
 const getHistory = (req, res) => {
-  model.getHistory((err, result) => {
+  const userEmail = req.query.email;
+  model.retrieveHistory(userEmail, (err, result) => {
     if (err) {
       res.json({ statusCode: 400, message: err });
     } else {
@@ -225,4 +218,16 @@ const getHistory = (req, res) => {
   });
 };
 
-module.exports = {createUser,loginUser,createProjects,getAllProjects,deleteProject,updateProject,createHistory,getHistory,storeUserInfo,storePetInfo,getUserInfo,getPetInfo};
+// get different breeds' standard weight and height
+const getStandard = (req, res) => {
+    const breed = req.query.breed;
+    model.retrieveStandard(breed, (err, result) => {
+      if (err) {
+        res.json({ statusCode: 400, message: err });
+      } else {
+        res.json({ statusCode: 200, data: result, message: "Successful get standard" });
+      }
+    });
+  };
+
+module.exports = { createUser,deleteUser, loginUser, createProjects, getAllProjects, deleteProject, updateProject, createHistory, getHistory, getStandard, storeUserInfo, storePetInfo, getUserInfo, getPetInfo };

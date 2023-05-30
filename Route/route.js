@@ -8,6 +8,11 @@ router.post("/api/Users", (req, res) => {
   controller.storeUserInfo(req, res);
 });
 
+//Delete one user (used for testing)
+router.delete("/api/Users", (req, res) => {
+  controller.deleteUser(req, res);
+});
+
 router.post("/api/Pets", (req, res) => {
   controller.storePetInfo(req, res);
 });
@@ -25,6 +30,7 @@ router.post("/api/user", (req, res) => {
   controller.createUser(req, res);
 });
 
+// Define API endpoint for login
 router.post("/api/login", (req, res) => {
   controller.loginUser(req, res);
 });
@@ -46,13 +52,18 @@ router.put("/api/Activity", (req, res) => {
 });
 
 // this route is for adding calculation history to db.
-router.post("/api/add_history", (req, res) => {
+router.post("/api/History", (req, res) => {
   controller.createHistory(req, res);
 });
 
 // Define an API endpoint to retrieve the history data
-router.post("/api/retrieve_history", (req, res) => {
+router.get("/api/History", (req, res) => {
   controller.getHistory(req, res);
+});
+
+// Define an API endpoint to retrieve the standard weight and height data
+router.get("/api/Standard", (req, res) => {
+    controller.getStandard(req, res);
 });
 
 module.exports = router;
