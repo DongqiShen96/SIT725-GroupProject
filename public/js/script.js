@@ -112,45 +112,45 @@ const calculateForm = () => {
 
   if (formData.breed && formData.name && formData.weight && formData.height) {
     console.log("Form Data Submitted: ", formData);
-    doCalculate(formData);
+    getStandardData(formData);
   } else {
     alert("Form data is incomplete. Please fill in all fields.");
   }
 };
 
-// get standard weight and height from database and calculate pet's health status and then show the result
-const doCalculate = (pet) => {
-  let weightMin,
-    weightMax,
-    heightMin,
-    heightMax,
-    weightStatus,
-    heightStatus,
-    html;
-
-  const breed = pet.breed;
-  const url = `/api/Standard?email=${encodeURIComponent(breed)}`;
-
+//get standard weight and height from database
+const getStandardData = (petData) => {
+  const breed = petData.breed;
+  const url = `/api/Standard?breed=${encodeURIComponent(breed)}`;
   $.get(url, (response) => {
     if (response.statusCode === 200) {
-      weightMin = response.data.weightMin;
-      weightMax = response.data.weightMax;
-      heightMin = response.data.heightMin;
-      heightMax = response.data.heightMax;
+      console.log(response.data);
+      doCalculate(petData, response.data);
     }
   });
+}
 
-  if (parseInt(pet.weight) < weightMin) {
+// calculate pet's health status and then show the result
+const doCalculate = (pet, standard) => {
+  let weightStatus = '';
+  let heightStatus = '';
+  let html = '';
+  let weightMin = standard[0].weightMin;
+  let weightMax = standard[0].weightMax;
+  let heightMin = standard[0].heightMin;
+  let heightMax = standard[0].heightMax;
+
+  if (parseInt(pet.weight) < parseInt(weightMin)) {
     weightStatus = `${pet.name}'s weight is lower than standard, `;
-  } else if (parseInt(pet.weight) > weightMax) {
+  } else if (parseInt(pet.weight) > parseInt(weightMax)) {
     weightStatus = `${pet.name} is overweight, `;
   } else {
     weightStatus = `${pet.name}'s weight is normal, `;
   }
 
-  if (parseInt(pet.height) < heightMin) {
+  if (parseInt(pet.height) < parseInt(heightMin)) {
     heightStatus = `and ${pet.name}'s height is  lower than standard.`;
-  } else if (parseInt(pet.weight) > heightMax) {
+  } else if (parseInt(pet.weight) > parseInt(heightMax)) {
     heightStatus = `and ${pet.name}'s height is  higher than standard.`;
   } else {
     heightStatus = `and ${pet.name}'s height is normal.`;
@@ -181,6 +181,7 @@ const searchHistory = () => {
 
   $.get(url, (response) => {
     if (response.statusCode === 200) {
+      console.log(response.data);
       addTable(response.data);
     }
   });
