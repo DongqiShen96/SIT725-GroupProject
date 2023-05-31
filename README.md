@@ -72,27 +72,28 @@ To start the web application, run the following command in your terminal:
 ```
 npm start
 ```
+This will start the server at http://localhost:3000.
 <strong>Or start by Docker:</strong>
 
 
 ### 1. Pulling docker images:
 
 ```
-docker pull timzheng99/sit725team6groupproject:lastest
+docker pull timzheng99/sit725groupproject:latest
 ```
 ### 2. Start docker:
 
 ```
-docker run -d -p 5000:3000 <image name>
+docker run -d -p 5000:3000 timzheng99/sit725groupproject
 ```
 
 ### 3. Stop docker (When exiting):
 
 ```
-docker container stop
+docker stop $(docker ps -q)
 ```
 
-This will start the server at http://localhost:3000.
+This will start the server at http://localhost:5000.
 
 ### <strong> Use Instructions</strong>
 
