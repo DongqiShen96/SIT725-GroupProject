@@ -6,6 +6,7 @@ let historyCollection = client.db("GroupProject").collection("History");
 let Activitycollection = client.db("GroupProject").collection("Activity");
 let petsCollection = client.db("GroupProject").collection("Pets");
 let usersCollection = client.db("GroupProject").collection("Users");
+let standardCollection = client.db("GroupProject").collection("StandardWeightAndHeight");
 
 
 // Insert user
@@ -107,7 +108,7 @@ function retrieveHistory(userEmail, callback) {
 
 // Query the database for the standard weight and height data
 function retrieveStandard(breed, callback) {
-  historyCollection.find({
+  standardCollection.find({
     breed: breed
   }).toArray(callback);
 }
